@@ -3,7 +3,7 @@ import { SectionHeader } from "@/components/ui-custom/SectionHeader";
 import cake from "@/assets/p-cake.jpg";
 import truffles from "@/assets/p-truffles.jpg";
 import hampers from "@/assets/cat-hampers.jpg";
-import grazing from "@/assets/cat-grazing.jpg";
+import grazing from "@/assets/cat-grazing-tables.jpg";
 import breads from "@/assets/cat-breads.jpg";
 import dips from "@/assets/cat-dips.jpg";
 
