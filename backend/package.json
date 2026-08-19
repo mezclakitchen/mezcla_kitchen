@@ -1,0 +1,45 @@
+{
+  "name": "mezcla-backend",
+  "version": "1.0.0",
+  "description": "Mezcla — The Artisanal Kitchen · Backend API Server",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc --project tsconfig.build.json",
+    "start": "node dist/index.js",
+    "db:migrate": "node --experimental-vm-modules node_modules/.bin/supabase db push",
+    "db:seed": "tsx src/db/seed.ts",
+    "db:types": "supabase gen types typescript --local > src/types/database.ts",
+    "lint": "eslint src --ext .ts",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.50.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.0.0",
+    "nanoid": "^5.1.5",
+    "node-cron": "^4.5.0",
+    "pg": "^8.22.0",
+    "puppeteer": "^25.3.0",
+    "sharp": "^0.33.5",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/node": "^22.16.5",
+    "@types/node-cron": "^3.0.11",
+    "supabase": "^2.26.0",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4"
+  }
+}

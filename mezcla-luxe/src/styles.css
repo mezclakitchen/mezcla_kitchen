@@ -1,0 +1,261 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Mezcla — The Artisanal Kitchen
+ * Luxury dark-light contrast system.
+ */
+
+@theme inline {
+  --font-display: "Playfair Display", "Cormorant Garamond", serif;
+  --font-sans: "Inter", "Manrope", system-ui, sans-serif;
+
+  --radius-sm: calc(var(--radius) - 6px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 6px);
+  --radius-2xl: calc(var(--radius) + 12px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Brand semantic tokens */
+  --color-cocoa: var(--cocoa);
+  --color-espresso: var(--espresso);
+  --color-chocolate: var(--chocolate);
+  --color-ivory: var(--ivory);
+  --color-cream: var(--cream);
+  --color-almond: var(--almond);
+  --color-gold: var(--gold);
+  --color-gold-deep: var(--gold-deep);
+  --color-copper: var(--copper);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ivory-muted: var(--ivory-muted);
+  --color-whatsapp: var(--whatsapp);
+}
+
+:root {
+  --radius: 1.25rem;
+
+  /* Brand palette in hex/oklch */
+  --cocoa: #000000;                   /* Pure Black */
+  --espresso: #000000;                /* Pure Black (was #111111) */
+  --chocolate: #222222;               /* Dark Gray */
+  --ivory: #F9F9F9;                   /* Off-White */
+  --cream: #FFFFFF;                   /* Pure White */
+  --almond: #F0F0F0;                  /* Light Gray */
+  
+  --gold: oklch(0.77 0.09 80);        /* #C9A46A */
+  --gold-deep: oklch(0.62 0.10 65);   /* #A77A3D */
+  --copper: oklch(0.60 0.12 50);      /* #B86F45 */
+  --ink: #000000;                     /* Pure Black */
+  --ink-muted: #666666;               /* Gray */
+  --ivory-muted: #E5E5E5;             /* Border Gray */
+  --whatsapp: oklch(0.72 0.18 150);   /* #25D366 */
+
+  /* Light surface defaults (used on light sections) */
+  --background: var(--cream);
+  --foreground: var(--ink);
+  --card: oklch(1 0 0);
+  --card-foreground: var(--ink);
+  --popover: var(--cream);
+  --popover-foreground: var(--ink);
+  --primary: var(--cocoa);
+  --primary-foreground: var(--cream);
+  --secondary: var(--almond);
+  --secondary-foreground: var(--ink);
+  --muted: var(--almond);
+  --muted-foreground: var(--ink-muted);
+  --accent: var(--gold);
+  --accent-foreground: var(--ink);
+  --destructive: oklch(0.55 0.20 25);
+  --destructive-foreground: var(--cream);
+  --border: oklch(0.86 0.02 70);
+  --input: oklch(0.88 0.02 70);
+  --ring: var(--gold);
+
+  /* Gradients & effects */
+  --gradient-gold: linear-gradient(135deg, oklch(0.82 0.10 85), oklch(0.68 0.10 65));
+  --gradient-cocoa: linear-gradient(180deg, var(--espresso), var(--cocoa));
+  --gradient-radial-warm: radial-gradient(ellipse at top right, oklch(0.35 0.07 50 / 0.5), transparent 60%);
+  --shadow-luxe: 0 30px 80px -30px oklch(0.16 0.025 40 / 0.5);
+  --shadow-soft: 0 12px 40px -12px oklch(0.16 0.025 40 / 0.12);
+  --shadow-gold: 0 20px 60px -25px oklch(0.77 0.09 80 / 0.55);
+}
+
+.dark {
+  --background: var(--cocoa);
+  --foreground: var(--cream);
+  --card: var(--espresso);
+  --card-foreground: var(--cream);
+  --popover: var(--espresso);
+  --popover-foreground: var(--cream);
+  --primary: var(--gold);
+  --primary-foreground: var(--cocoa);
+  --secondary: var(--chocolate);
+  --secondary-foreground: var(--cream);
+  --muted: var(--chocolate);
+  --muted-foreground: var(--ivory-muted);
+  --accent: var(--gold);
+  --accent-foreground: var(--cocoa);
+  --border: oklch(1 0 0 / 0.08);
+  --input: oklch(1 0 0 / 0.10);
+  --ring: var(--gold);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  ::selection {
+    background: var(--gold);
+    color: var(--cocoa);
+  }
+}
+
+@layer components {
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .container-luxe {
+    max-width: 1280px;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) { .container-luxe { padding-inline: 2rem; } }
+  @media (min-width: 1280px) { .container-luxe { padding-inline: 3rem; } }
+
+  .btn-gold {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    padding: 0.95rem 1.6rem;
+    background: var(--gradient-gold);
+    color: var(--cocoa);
+    font-weight: 600;
+    font-size: 0.875rem;
+    letter-spacing: 0.02em;
+    border-radius: 999px;
+    transition: transform .3s ease, box-shadow .3s ease, filter .3s ease;
+    box-shadow: var(--shadow-gold);
+  }
+  .btn-gold:hover { transform: translateY(-2px); filter: brightness(1.05); }
+
+  .btn-ghost-gold {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    padding: 0.9rem 1.55rem;
+    background: transparent;
+    color: var(--gold);
+    border: 1px solid color-mix(in oklab, var(--gold) 55%, transparent);
+    font-weight: 500;
+    font-size: 0.875rem;
+    letter-spacing: 0.02em;
+    border-radius: 999px;
+    transition: all .3s ease;
+  }
+  .btn-ghost-gold:hover { background: color-mix(in oklab, var(--gold) 12%, transparent); border-color: var(--gold); }
+
+  .btn-dark {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    padding: 0.9rem 1.55rem;
+    background: var(--cocoa);
+    color: var(--cream);
+    border-radius: 999px;
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: all .3s ease;
+  }
+  .btn-dark:hover { background: var(--espresso); transform: translateY(-1px); }
+
+  .btn-wa {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.55rem;
+    padding: 0.85rem 1.4rem;
+    background: var(--whatsapp);
+    color: white;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    box-shadow: 0 14px 40px -14px oklch(0.72 0.18 150 / 0.6);
+    transition: transform .3s ease, filter .3s ease;
+  }
+  .btn-wa:hover { transform: translateY(-2px); filter: brightness(1.05); }
+
+  .glass-dark {
+    background: color-mix(in oklab, var(--cocoa) 55%, transparent);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid color-mix(in oklab, var(--gold) 18%, transparent);
+  }
+
+  .hairline { border-color: color-mix(in oklab, var(--gold) 22%, transparent); }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: reveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  .reveal-delay-1 { animation-delay: 0.1s; }
+  .reveal-delay-2 { animation-delay: 0.22s; }
+  .reveal-delay-3 { animation-delay: 0.34s; }
+  .reveal-delay-4 { animation-delay: 0.46s; }
+}
+
+@keyframes reveal {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes soft-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 oklch(0.72 0.18 150 / 0.45); }
+  50% { box-shadow: 0 0 0 14px oklch(0.72 0.18 150 / 0); }
+}
+.pulse-wa { animation: soft-pulse 2.4s ease-out infinite; }
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee { animation: marquee 38s linear infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
