@@ -11,7 +11,7 @@ router.use(adminRateLimiter);
  * GET /api/admin/crm/upcoming-events
  * Fetches events in the next 30 days.
  */
-router.get('/upcoming-events', async (req, res, next) => {
+router.get('/upcoming-events', async (_req, res, next) => {
   try {
     const today = new Date();
     const thirtyDaysFromNow = new Date(today.getTime() + 30 * 24 * 60 * 60 * 1000);

@@ -76,9 +76,7 @@ router.get('/analytics', async (_req, res, next) => {
   try {
     const [
       { data: orders },
-      { data: customers },
-      { data: leads },
-      { data: products }
+      { data: customers }
     ] = await Promise.all([
       adminSupabase.from('orders').select('items, total, created_at, status').is('deleted_at', null).eq('status', 'paid'),
       adminSupabase.from('customers').select('created_at'),

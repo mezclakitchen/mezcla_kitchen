@@ -23,7 +23,7 @@ export async function generateInvoicePDF(order: Order): Promise<string> {
     const page = await browser.newPage();
     
     // Set content and wait for web fonts to load
-    await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
+    await page.setContent(htmlContent, { waitUntil: 'load' });
     await page.evaluateHandle('document.fonts.ready');
 
     // Generate PDF

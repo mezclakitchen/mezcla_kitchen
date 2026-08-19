@@ -17,7 +17,7 @@ let cachedGoogleReviews: any = null;
 let lastGoogleFetch = 0;
 const CACHE_TTL = 24 * 60 * 60 * 1000;
 
-router.get('/google', async (_req, res, next) => {
+router.get('/google', async (_req, res) => {
   try {
     if (cachedGoogleReviews && (Date.now() - lastGoogleFetch < CACHE_TTL)) {
       res.json({ data: cachedGoogleReviews });
@@ -41,7 +41,7 @@ router.get('/google', async (_req, res, next) => {
       throw new Error(`Google API responded with ${response.status}: ${await response.text()}`);
     }
 
-    const data = await response.json();
+    const data = await response.json() as any;
 
     if (data.status === 'REQUEST_DENIED') {
       console.error('Google API Error:', data.error_message);

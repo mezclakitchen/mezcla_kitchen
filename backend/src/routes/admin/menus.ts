@@ -10,7 +10,7 @@ router.use(requireAdmin);
 router.use(adminRateLimiter);
 
 /** GET /api/admin/menus — List all menus */
-router.get('/', async (req, res, next) => {
+router.get('/', async (_req, res, next) => {
   try {
     const { data, error } = await adminSupabase
       .from('menus')
