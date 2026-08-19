@@ -60,6 +60,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "theme-color", content: "#120B09" },
     ],
     links: [
+      { rel: "icon", type: "image/png", href: "/logo-filled.png" },
       { rel: "canonical", href: "https://mezclakitchen.in" },
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
