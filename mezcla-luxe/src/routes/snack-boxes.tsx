@@ -174,22 +174,22 @@ function SnackBoxesPage() {
       </section>
 
       {/* Products */}
-      {items.length > 0 && (
-        <section id="menu" className="bg-cream text-ink pb-24">
-          <div className="container-luxe">
-            <SectionHeader eyebrow="Our Boxes" title="Ready to order." align="center" />
-            {isLoading ? (
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-                {Array.from({ length: 6 }).map((_, i) => <div key={i} className="rounded-2xl bg-white border border-border shadow-soft animate-pulse h-80" />)}
-              </div>
-            ) : (
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-                {items.map((p) => <ProductCard key={p.id} product={p} />)}
-              </div>
-            )}
-          </div>
-        </section>
-      )}
+      <section id="menu" className="bg-cream text-ink pb-24">
+        <div className="container-luxe">
+          <SectionHeader eyebrow="Our Boxes" title="Ready to order." align="center" />
+          {isLoading ? (
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+              {Array.from({ length: 6 }).map((_, i) => <div key={i} className="rounded-2xl bg-white border border-border shadow-soft animate-pulse h-80" />)}
+            </div>
+          ) : items.length > 0 ? (
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+              {items.map((p) => <ProductCard key={p.id} product={p} />)}
+            </div>
+          ) : (
+            <p className="text-center text-ink-muted py-12 mt-12">More options coming soon!</p>
+          )}
+        </div>
+      </section>
 
       {/* Order Form */}
       <section id="order" className="bg-espresso py-24 md:py-32">
