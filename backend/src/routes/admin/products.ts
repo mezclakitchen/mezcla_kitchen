@@ -79,6 +79,85 @@ router.post('/:id/image', express.raw({ type: '*/*', limit: '5mb' }), async (req
   } catch (err) { next(err); }
 });
 
+/** POST /api/admin/products/:id/gallery — Upload additional product image */
+router.post('/:id/gallery', express.raw({ type: '*/*', limit: '5mb' }), async (req, res, next) => {
+  try {
+    const { data: prod } = await adminSupabase
+      .from('products').select('image_url, images').eq('id', req.params.id).single();
+      
+    if (!prod) {
+      return res.status(404).json({ error: 'Product not found' });
+    }
+
+    const buffer = req.body as Buffer;
+    const { url } = await uploadImage(buffer, 'products', null, 1200);
+
+    let updatePayload: any = { updated_at: new Date().toISOString() };
+    
+    // If no primary image, set it. Else add to images array.
+    if (!prod.image_url) {
+      updatePayload.image_url = url;
+    } else {
+      const currentImages = Array.isArray(prod.images) ? prod.images : [];
+      updatePayload.images = [...currentImages, url];
+    }
+
+    const { data, error } = await adminSupabase
+      .from('products')
+      .update(updatePayload)
+      .eq('id', req.params.id)
+      .select().single();
+
+    if (error) throw error;
+    res.json({ data, imageUrl: url });
+  } catch (err) { next(err); }
+});
+
+/** DELETE /api/admin/products/:id/gallery — Delete product image */
+router.delete('/:id/gallery', async (req, res, next) => {
+  try {
+    const targetUrl = req.query.url as string;
+    if (!targetUrl) return res.status(400).json({ error: 'Missing url parameter' });
+
+    const { data: prod } = await adminSupabase
+      .from('products').select('image_url, images').eq('id', req.params.id).single();
+      
+    if (!prod) return res.status(404).json({ error: 'Product not found' });
+
+    let updatePayload: any = { updated_at: new Date().toISOString() };
+    const currentImages = Array.isArray(prod.images) ? prod.images : [];
+
+    if (prod.image_url === targetUrl) {
+      // Deleting primary image
+      if (currentImages.length > 0) {
+        // Promote first gallery image to primary
+        updatePayload.image_url = currentImages[0];
+        updatePayload.images = currentImages.slice(1);
+      } else {
+        updatePayload.image_url = null;
+      }
+    } else if (currentImages.includes(targetUrl)) {
+      // Deleting gallery image
+      updatePayload.images = currentImages.filter((u: string) => u !== targetUrl);
+    } else {
+      return res.status(404).json({ error: 'Image not found in product' });
+    }
+
+    const { data, error } = await adminSupabase
+      .from('products')
+      .update(updatePayload)
+      .eq('id', req.params.id)
+      .select().single();
+
+    if (error) throw error;
+    
+    // Delete from storage
+    await deleteImageByUrl(targetUrl);
+
+    res.json({ data, success: true });
+  } catch (err) { next(err); }
+});
+
 /** PUT /api/admin/products/:id */
 router.put('/:id', async (req, res, next) => {
   try {

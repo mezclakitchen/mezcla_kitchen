@@ -11,6 +11,7 @@ import { useState, useRef, useCallback } from "react";
 import {
   useProducts, useCategories, useCreateProduct, useUpdateProduct,
   useDeleteProduct, useUploadProductImage,
+  useUploadProductGalleryImage, useDeleteProductGalleryImage,
 } from "@/hooks/useApi";
 import { toast } from "sonner";
 
@@ -44,6 +45,8 @@ function ProductModal({
   const createProduct = useCreateProduct();
   const updateProduct = useUpdateProduct();
   const uploadImage = useUploadProductImage();
+  const uploadGalleryImage = useUploadProductGalleryImage();
+  const deleteGalleryImage = useDeleteProductGalleryImage();
 
   const existingVariants: Variant[] = Array.isArray(product?.variants) ? product.variants : [];
 
@@ -65,8 +68,13 @@ function ProductModal({
   const [variants, setVariants] = useState<Variant[]>(
     existingVariants.length > 0 ? existingVariants : []
   );
-  const [imageFile, setImageFile] = useState<File | null>(null);
-  const [imagePreview, setImagePreview] = useState<string | null>(product?.image_url ?? null);
+  
+  // Combine existing primary image and gallery images
+  const existingImages = [];
+  if (product?.image_url) existingImages.push(product.image_url);
+  if (Array.isArray(product?.images)) existingImages.push(...product.images);
+
+  const [pendingImages, setPendingImages] = useState<{ file: File; preview: string }[]>([]);
   const [dragging, setDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -93,23 +101,37 @@ function ProductModal({
     setVariants((v) => v.map((item, idx) => idx === i ? { ...item, [field]: value } : item));
   }
 
-  function handleFileDrop(file: File) {
-    if (!file.type.startsWith("image/")) {
-      toast.error("Please upload an image file");
+  function handleFiles(files: FileList) {
+    const imageFiles = Array.from(files).filter((f) => f.type.startsWith("image/"));
+    if (imageFiles.length === 0) {
+      toast.error("Please upload image files only");
       return;
     }
-    setImageFile(file);
-    const reader = new FileReader();
-    reader.onload = (e) => setImagePreview(e.target?.result as string);
-    reader.readAsDataURL(file);
+    imageFiles.forEach((file) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setPendingImages((prev) => [...prev, { file, preview: e.target?.result as string }]);
+      };
+      reader.readAsDataURL(file);
+    });
   }
 
   const onDrop = useCallback((e: React.DragEvent) => {
     e.preventDefault();
     setDragging(false);
-    const file = e.dataTransfer.files[0];
-    if (file) handleFileDrop(file);
+    if (e.dataTransfer.files.length > 0) handleFiles(e.dataTransfer.files);
   }, []);
+
+  async function handleDeleteExisting(url: string) {
+    if (!product?.id) return;
+    try {
+      await deleteGalleryImage.mutateAsync({ id: product.id, url });
+    } catch { /* error handled by hook */ }
+  }
+
+  function handleRemovePending(index: number) {
+    setPendingImages((prev) => prev.filter((_, i) => i !== index));
+  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -129,22 +151,28 @@ function ProductModal({
     };
 
     try {
+      let productId = product?.id;
+      
       if (isEdit) {
         const { data: updated } = await updateProduct.mutateAsync({ id: product.id, ...body }) as any;
-        if (imageFile && updated?.id) {
-          await uploadImage.mutateAsync({ id: updated.id, file: imageFile });
-        }
+        if (updated?.id) productId = updated.id;
       } else {
         const { data: created } = await createProduct.mutateAsync(body) as any;
-        if (imageFile && created?.id) {
-          await uploadImage.mutateAsync({ id: created.id, file: imageFile });
+        if (created?.id) productId = created.id;
+      }
+      
+      // Upload pending images one by one
+      if (productId && pendingImages.length > 0) {
+        for (const { file } of pendingImages) {
+          await uploadGalleryImage.mutateAsync({ id: productId, file });
         }
       }
+      
       onClose();
     } catch { /* errors handled by hooks */ }
   }
 
-  const busy = createProduct.isPending || updateProduct.isPending || uploadImage.isPending;
+  const busy = createProduct.isPending || updateProduct.isPending || uploadGalleryImage.isPending || deleteGalleryImage.isPending;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
@@ -160,37 +188,72 @@ function ProductModal({
           {/* Image upload */}
           <div>
             <label className="text-xs uppercase tracking-wider text-muted-foreground mb-2 block">
-              Product Image
+              Product Images
             </label>
+            
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mb-4">
+              {/* Existing Images */}
+              {existingImages.map((url, i) => (
+                <div key={url} className="group relative aspect-square rounded-xl overflow-hidden border border-border bg-accent/50">
+                  <img src={url} alt="Product" className="w-full h-full object-cover" />
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <button
+                      type="button"
+                      onClick={() => handleDeleteExisting(url)}
+                      className="h-8 w-8 rounded-full bg-red-500/90 text-white grid place-items-center hover:bg-red-500"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </button>
+                  </div>
+                  {i === 0 && (
+                    <div className="absolute top-2 left-2 bg-black/60 text-white text-[10px] uppercase font-bold px-2 py-0.5 rounded">
+                      Primary
+                    </div>
+                  )}
+                </div>
+              ))}
+              
+              {/* Pending Images */}
+              {pendingImages.map((img, i) => (
+                <div key={i} className="group relative aspect-square rounded-xl overflow-hidden border-2 border-gold/50 bg-gold-soft/20">
+                  <img src={img.preview} alt="Pending" className="w-full h-full object-cover opacity-70 grayscale-[30%]" />
+                  <div className="absolute inset-0 flex items-center justify-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => handleRemovePending(i)}
+                      className="h-8 w-8 rounded-full bg-red-500/90 text-white grid place-items-center shadow-lg hover:scale-110 transition-transform"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                  </div>
+                  <div className="absolute bottom-2 left-0 right-0 text-center">
+                    <span className="bg-black/60 text-white text-[10px] uppercase font-bold px-2 py-0.5 rounded">Pending</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+
             <div
               onDragOver={(e) => { e.preventDefault(); setDragging(true); }}
               onDragLeave={() => setDragging(false)}
               onDrop={onDrop}
               onClick={() => fileInputRef.current?.click()}
-              className={`relative cursor-pointer rounded-xl border-2 border-dashed transition-colors ${
+              className={`relative cursor-pointer rounded-xl border-2 border-dashed transition-colors p-8 ${
                 dragging ? "border-gold bg-gold-soft" : "border-border hover:border-border-strong hover:bg-accent"
-              } ${imagePreview ? "p-0 overflow-hidden" : "p-8"}`}
+              }`}
             >
-              {imagePreview ? (
-                <div className="relative">
-                  <img src={imagePreview} alt="Preview" className="w-full h-48 object-cover" />
-                  <div className="absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 transition flex items-center justify-center gap-2 text-white text-sm font-medium">
-                    <Upload className="h-4 w-4" /> Change image
-                  </div>
-                </div>
-              ) : (
-                <div className="text-center">
-                  <ImageIcon className="h-10 w-10 mx-auto text-muted-foreground mb-2" />
-                  <div className="text-sm font-medium">Drag & drop or click to upload</div>
-                  <div className="text-xs text-muted-foreground mt-1">PNG, JPG, WebP — max 5MB · Auto-converted to WebP</div>
-                </div>
-              )}
+              <div className="text-center">
+                <ImageIcon className="h-10 w-10 mx-auto text-muted-foreground mb-2" />
+                <div className="text-sm font-medium">Drag & drop or click to add images</div>
+                <div className="text-xs text-muted-foreground mt-1">PNG, JPG, WebP — max 5MB · Auto-converted to WebP</div>
+              </div>
               <input
                 ref={fileInputRef}
                 type="file"
+                multiple
                 accept="image/*"
                 className="hidden"
-                onChange={(e) => { const f = e.target.files?.[0]; if (f) handleFileDrop(f); }}
+                onChange={(e) => { if (e.target.files) handleFiles(e.target.files); }}
               />
             </div>
           </div>

@@ -97,6 +97,10 @@ export const productsApi = {
     request<any>(`/api/admin/products/${id}`, { method: "PUT", body: JSON.stringify(body) }),
   uploadImage: (id: string, file: File) =>
     uploadRequest<any>(`/api/admin/products/${id}/image`, file),
+  uploadGalleryImage: (id: string, file: File) =>
+    uploadRequest<any>(`/api/admin/products/${id}/gallery`, file),
+  deleteGalleryImage: (id: string, url: string) =>
+    request<any>(`/api/admin/products/${id}/gallery?url=${encodeURIComponent(url)}`, { method: "DELETE" }),
   delete: (id: string) =>
     request<any>(`/api/admin/products/${id}`, { method: "DELETE" }),
 };

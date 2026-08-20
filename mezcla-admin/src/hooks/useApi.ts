@@ -103,6 +103,31 @@ export function useUploadProductImage() {
   });
 }
 
+export function useUploadProductGalleryImage() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, file }: { id: string; file: File }) =>
+      productsApi.uploadGalleryImage(id, file),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["products"] });
+    },
+    onError: (e: any) => toast.error(e.message ?? "Image upload failed"),
+  });
+}
+
+export function useDeleteProductGalleryImage() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, url }: { id: string; url: string }) =>
+      productsApi.deleteGalleryImage(id, url),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["products"] });
+      toast.success("Image deleted");
+    },
+    onError: (e: any) => toast.error(e.message ?? "Image deletion failed"),
+  });
+}
+
 // ─── Categories ───────────────────────────────────────────────
 export function useCategories() {
   return useQuery({
