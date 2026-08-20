@@ -24,6 +24,7 @@ export type ProductLike = Product | {
   price_label?: string | null;
   image?: string;
   image_url?: string | null;
+  images?: string[];
   blurb?: string;
   description?: string | null;
   tag?: string;
@@ -64,6 +65,7 @@ function normalise(p: ProductLike) {
     showPrice,
     rawPrice,
     image: (p as any).image ?? (p as any).image_url ?? "",
+    images: Array.isArray((p as any).images) ? (p as any).images : [],
     blurb: (p as any).blurb ?? (p as any).description ?? "",
     tag: (p as any).tag ?? undefined,
     prep: (p as any).prep ?? "Made fresh · Order 2–3 days prior",
@@ -220,7 +222,15 @@ export function ProductCard({ product }: { product: ProductLike }) {
   const displayEnquiriesCount = p.enquiriesCount || 0;
   
   const recentMsg = getRecentMessage(p.id);
-  const carouselImages = getCarouselImagesForProduct(p.name);
+  
+  // Prefer database gallery images, fallback to hardcoded
+  let carouselImages = getCarouselImagesForProduct(p.name);
+  if (p.images && p.images.length > 0) {
+    const allImages = [p.image, ...p.images].filter(Boolean);
+    if (allImages.length > 1) {
+      carouselImages = allImages;
+    }
+  }
 
   // Variant selection state
   const [selectedVariant, setSelectedVariant] = useState<ProductVariant | null>(
