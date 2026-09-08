@@ -14,7 +14,7 @@ export const Route = createFileRoute("/festive")({
       { name: "description", content: "Small-batch festive hampers and gifting for Diwali, Christmas, Eid, New Year and wedding season. Reserve early — 3–4 weeks lead time for bulk." },
       { property: "og:image", content: festive },
     ],
-    links: [{ rel: "canonical", href: "/festive" }],
+    links: [{ rel: "canonical", href: "https://mezclakitchen.in/festive" }],
   }),
   component: FestivePage,
 });

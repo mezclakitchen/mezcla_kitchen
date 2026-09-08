@@ -15,7 +15,7 @@ export const Route = createFileRoute("/contact")({
           "WhatsApp is the fastest way to reach us for custom cakes, hampers, snack boxes and grazing tables in Bangalore.",
       },
     ],
-    links: [{ rel: "canonical", href: "/contact" }],
+    links: [{ rel: "canonical", href: "https://mezclakitchen.in/contact" }],
   }),
   component: ContactPage,
 });

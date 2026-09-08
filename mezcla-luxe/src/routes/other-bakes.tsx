@@ -10,7 +10,7 @@ export const Route = createFileRoute("/other-bakes")({
       { name: "description", content: "From Korean cream cheese buns and Berliners to quiches, brownies and seasonal desserts—crafted for everyday indulgence." },
       { property: "og:image", content: bakes },
     ],
-    links: [{ rel: "canonical", href: "/other-bakes" }],
+    links: [{ rel: "canonical", href: "https://mezclakitchen.in/other-bakes" }],
   }),
   component: OtherBakesPage,
 });

@@ -15,7 +15,7 @@ export const Route = createFileRoute("/food-hampers")({
       { name: "description", content: "Artisanal food hampers filled with handcrafted breads, dips, bakes and treats. Perfect for festive gifting, client appreciation and special occasions in Bangalore." },
       { property: "og:image", content: foodHampersImg },
     ],
-    links: [{ rel: "canonical", href: "/food-hampers" }],
+    links: [{ rel: "canonical", href: "https://mezclakitchen.in/food-hampers" }],
   }),
   component: FoodHampersPage,
 });

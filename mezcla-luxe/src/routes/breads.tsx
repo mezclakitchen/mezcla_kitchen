@@ -10,7 +10,7 @@ export const Route = createFileRoute("/breads")({
       { name: "description", content: "Slow-fermented sourdough (available every Wednesday), speciality sandwich breads, focaccia, pita, kulcha, baguette and more — freshly baked in small batches in Bangalore." },
       { property: "og:image", content: breads },
     ],
-    links: [{ rel: "canonical", href: "/breads" }],
+    links: [{ rel: "canonical", href: "https://mezclakitchen.in/breads" }],
   }),
   component: BreadsPage,
 });

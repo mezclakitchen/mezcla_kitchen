@@ -17,7 +17,7 @@ export const Route = createFileRoute("/plan-event")({
           "Share details of your birthday, house party, anniversary or corporate event. We'll respond with a curated proposal — usually within a few hours.",
       },
     ],
-    links: [{ rel: "canonical", href: "/plan-event" }],
+    links: [{ rel: "canonical", href: "https://mezclakitchen.in/plan-event" }],
   }),
   component: PlanEventPage,
 });

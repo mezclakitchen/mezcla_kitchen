@@ -10,7 +10,7 @@ export const Route = createFileRoute("/dips")({
       { name: "description", content: "Small-batch hummus, muhammara and seasonal mezze dips — jarred fresh, delivered in Bangalore." },
       { property: "og:image", content: dips },
     ],
-    links: [{ rel: "canonical", href: "/dips" }],
+    links: [{ rel: "canonical", href: "https://mezclakitchen.in/dips" }],
   }),
   component: DipsPage,
 });

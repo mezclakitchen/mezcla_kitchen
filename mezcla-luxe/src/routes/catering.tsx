@@ -15,7 +15,7 @@ export const Route = createFileRoute("/catering")({
       { name: "description", content: "Wholesome, handcrafted food for offices, house parties and events—prepared fresh and delivered with care." },
       { property: "og:image", content: cateringImg },
     ],
-    links: [{ rel: "canonical", href: "/catering" }],
+    links: [{ rel: "canonical", href: "https://mezclakitchen.in/catering" }],
   }),
   component: CateringPage,
 });

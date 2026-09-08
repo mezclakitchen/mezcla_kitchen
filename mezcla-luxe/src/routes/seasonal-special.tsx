@@ -10,7 +10,7 @@ export const Route = createFileRoute("/seasonal-special")({
       { name: "description", content: "Limited seasonal creations—handcrafted fresh each season with the finest ingredients. Available for a short time only." },
       { property: "og:image", content: bakes },
     ],
-    links: [{ rel: "canonical", href: "/seasonal-special" }],
+    links: [{ rel: "canonical", href: "https://mezclakitchen.in/seasonal-special" }],
   }),
   component: SeasonalSpecialPage,
 });

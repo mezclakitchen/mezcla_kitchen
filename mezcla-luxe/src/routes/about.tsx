@@ -13,7 +13,7 @@ export const Route = createFileRoute("/about")({
       { title: "About Mezcla — A Home Kitchen in Bangalore" },
       { name: "description", content: "Mezcla is a small Bangalore home kitchen baking sourdough, jarring fresh mezze and curating hampers and grazing tables for the people you love." },
     ],
-    links: [{ rel: "canonical", href: "/about" }],
+    links: [{ rel: "canonical", href: "https://mezclakitchen.in/about" }],
   }),
   component: AboutPage,
 });

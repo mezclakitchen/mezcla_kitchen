@@ -19,7 +19,7 @@ export const Route = createFileRoute("/grazing-tables")({
       { property: "og:description", content: "Where great food becomes the centrepiece of every celebration." },
       { property: "og:image", content: "/product_photos/dips-platter/dips1.jpg" },
     ],
-    links: [{ rel: "canonical", href: "/grazing-tables" }],
+    links: [{ rel: "canonical", href: "https://mezclakitchen.in/grazing-tables" }],
   }),
   component: GrazingPage,
 });

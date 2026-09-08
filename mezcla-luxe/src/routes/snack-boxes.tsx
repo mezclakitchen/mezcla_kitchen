@@ -16,7 +16,7 @@ export const Route = createFileRoute("/snack-boxes")({
       { name: "description", content: "Handcrafted, individually packed snack and meal boxes for office meetings, birthday parties, kitty gatherings and events. Customisable, minimum 10 boxes." },
       { property: "og:image", content: snackbox },
     ],
-    links: [{ rel: "canonical", href: "/snack-boxes" }],
+    links: [{ rel: "canonical", href: "https://mezclakitchen.in/snack-boxes" }],
   }),
   component: SnackBoxesPage,
 });

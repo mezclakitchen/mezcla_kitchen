@@ -13,7 +13,7 @@ export const Route = createFileRoute("/blog")({
       { title: "Journal — Stories, Guides & Ideas | Mezcla" },
       { name: "description", content: "Guides on hampers, grazing tables, sourdough, festive gifting and planning intimate events in Bangalore." },
     ],
-    links: [{ rel: "canonical", href: "/blog" }],
+    links: [{ rel: "canonical", href: "https://mezclakitchen.in/blog" }],
   }),
   component: BlogPage,
 });

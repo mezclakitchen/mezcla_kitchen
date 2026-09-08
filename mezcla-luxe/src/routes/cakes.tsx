@@ -15,7 +15,7 @@ export const Route = createFileRoute("/cakes")({
       },
       { property: "og:image", content: cake },
     ],
-    links: [{ rel: "canonical", href: "/cakes" }],
+    links: [{ rel: "canonical", href: "https://mezclakitchen.in/cakes" }],
   }),
   component: CakesPage,
 });

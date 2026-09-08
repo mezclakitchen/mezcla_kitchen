@@ -13,7 +13,7 @@ export const Route = createFileRoute("/workshops")({
       { name: "description", content: "Hands-on baking and food workshops in Bangalore—sourdough, pizza making, mezze boards and more. Intimate, fun and delicious experiences with Team Mezcla." },
       { property: "og:image", content: cateringImg },
     ],
-    links: [{ rel: "canonical", href: "/workshops" }],
+    links: [{ rel: "canonical", href: "https://mezclakitchen.in/workshops" }],
   }),
   component: WorkshopsPage,
 });

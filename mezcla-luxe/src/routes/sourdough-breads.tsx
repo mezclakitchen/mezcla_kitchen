@@ -14,7 +14,7 @@ export const Route = createFileRoute("/sourdough-breads")({
       },
       { property: "og:image", content: breads },
     ],
-    links: [{ rel: "canonical", href: "/sourdough-breads" }],
+    links: [{ rel: "canonical", href: "https://mezclakitchen.in/sourdough-breads" }],
   }),
   component: SourdoughBreadsPage,
 });
