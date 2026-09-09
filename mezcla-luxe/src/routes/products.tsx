@@ -33,12 +33,12 @@ export const Route = createFileRoute("/products")({
           "description": "Sourdough breads, speciality breads, handcrafted dips & mezze, artisan bakes & desserts, and celebration cakes.",
           "url": "https://mezclakitchen.in/products",
           "itemListElement": [
-            { "@type": "ListItem", "position": 1, "item": { "@type": "Product", "name": "Sourdough Bread" } },
-            { "@type": "ListItem", "position": 2, "item": { "@type": "Product", "name": "Speciality Bread" } },
-            { "@type": "ListItem", "position": 3, "item": { "@type": "Product", "name": "Other Bakes & Desserts" } },
-            { "@type": "ListItem", "position": 4, "item": { "@type": "Product", "name": "Handcrafted Dips & Mezze" } },
-            { "@type": "ListItem", "position": 5, "item": { "@type": "Product", "name": "Cakes" } }
-          ]
+              { "@type": "ListItem", "position": 1, "name": "Sourdough Bread" },
+              { "@type": "ListItem", "position": 2, "name": "Speciality Bread" },
+              { "@type": "ListItem", "position": 3, "name": "Other Bakes & Desserts" },
+              { "@type": "ListItem", "position": 4, "name": "Handcrafted Dips & Mezze" },
+              { "@type": "ListItem", "position": 5, "name": "Cakes" }
+            ]
         }),
       },
     ],

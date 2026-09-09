@@ -146,21 +146,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           sameAs: [
             "https://www.instagram.com/mezclakitchen.in/",
             "https://share.google/AgGzGJiXjaGZBic2L"
-          ],
-          hasOfferCatalog: {
-            "@type": "OfferCatalog",
-            name: "Mezcla Menu",
-            itemListElement: [
-              { "@type": "Offer", itemOffered: { "@type": "Product", name: "Sourdough Bread" } },
-              { "@type": "Offer", itemOffered: { "@type": "Product", name: "Speciality Bread" } },
-              { "@type": "Offer", itemOffered: { "@type": "Product", name: "Other Bakes & Desserts" } },
-              { "@type": "Offer", itemOffered: { "@type": "Product", name: "Handcrafted Dips & Mezze" } },
-              { "@type": "Offer", itemOffered: { "@type": "Product", name: "Celebration Cakes" } },
-              { "@type": "Offer", itemOffered: { "@type": "Product", name: "Grazing Tables" } },
-              { "@type": "Offer", itemOffered: { "@type": "Product", name: "Gourmet Hampers" } },
-              { "@type": "Offer", itemOffered: { "@type": "Product", name: "Corporate Catering" } },
-            ],
-          },
+          ]
         }),
       },
     ],
