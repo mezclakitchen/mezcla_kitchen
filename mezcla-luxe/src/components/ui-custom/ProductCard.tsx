@@ -60,7 +60,7 @@ function normalise(p: ProductLike) {
   return {
     id: p.id,
     name: p.name,
-    category: (p as any).category ?? (p as any).category_slug ?? "",
+    category: (p as any).categories?.name ?? (p as any).category?.name ?? (p as any).category ?? (p as any).category_slug ?? "",
     displayPrice,
     showPrice,
     rawPrice,

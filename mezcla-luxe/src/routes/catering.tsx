@@ -43,9 +43,13 @@ const notIncluded = [
 function CateringPage() {
   const { generateWhatsAppLink } = useWhatsApp();
   const { data, isLoading } = usePublicProducts({ limit: 100 });
-  const items = (data?.data ?? []).filter((p: any) => 
-    p.category_slug?.includes("cater") || p.category?.toLowerCase().includes("cater")
-  );
+  const items = (data?.data ?? []).filter((p: any) => {
+    const catObj = p.categories || p.category;
+    const catName = (typeof catObj === 'object' ? catObj?.name : catObj) || '';
+    const catSlug = (typeof catObj === 'object' ? catObj?.slug : p.category_slug) || '';
+    const searchStr = (catName + ' ' + catSlug).toLowerCase();
+    return searchStr.includes("cater");
+  });
 
   const { data: galleryData } = usePublicGallery("catering");
   const gallery = galleryData?.data ?? [];

@@ -23,9 +23,13 @@ export const Route = createFileRoute("/cakes")({
 function CakesPage() {
   const { generateWhatsAppLink } = useWhatsApp();
   const { data, isLoading } = usePublicProducts({ limit: 100 });
-  const items = (data?.data ?? []).filter((p: any) => 
-    p.category_slug?.includes("cake") || p.category?.toLowerCase().includes("cake")
-  );
+  const items = (data?.data ?? []).filter((p: any) => {
+    const catObj = p.categories || p.category;
+    const catName = (typeof catObj === 'object' ? catObj?.name : catObj) || '';
+    const catSlug = (typeof catObj === 'object' ? catObj?.slug : p.category_slug) || '';
+    const searchStr = (catName + ' ' + catSlug).toLowerCase();
+    return searchStr.includes("cake") || searchStr.includes("dessert");
+  });
   return (
     <>
       <section className="relative bg-cocoa overflow-hidden">

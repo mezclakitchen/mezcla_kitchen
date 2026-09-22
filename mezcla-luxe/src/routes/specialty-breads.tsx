@@ -21,9 +21,13 @@ export const Route = createFileRoute("/specialty-breads")({
 
 function SpecialtyBreadsPage() {
   const { data, isLoading } = usePublicProducts({ limit: 100 });
-  const items = (data?.data ?? []).filter((p: any) => 
-    p.category_slug?.includes("special") || p.category?.toLowerCase().includes("special")
-  );
+  const items = (data?.data ?? []).filter((p: any) => {
+    const catObj = p.categories || p.category;
+    const catName = (typeof catObj === 'object' ? catObj?.name : catObj) || '';
+    const catSlug = (typeof catObj === 'object' ? catObj?.slug : p.category_slug) || '';
+    const searchStr = (catName + ' ' + catSlug).toLowerCase();
+    return (searchStr.includes("bread") || searchStr.includes("special")) && !searchStr.includes("sourdough");
+  });
   return (
     <>
       <section className="relative bg-cocoa overflow-hidden">

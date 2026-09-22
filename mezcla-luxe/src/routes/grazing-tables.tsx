@@ -94,9 +94,15 @@ const faqs = [
 function GrazingPage() {
   const { generateWhatsAppLink } = useWhatsApp();
   const { data, isLoading } = usePublicProducts({ limit: 100 });
-  const items = (data?.data ?? []).filter((p: any) => 
-    p.category_slug?.includes("grazing") || p.category?.toLowerCase().includes("grazing")
-  );
+  const items = (data?.data ?? []).filter((p: any) => {
+    const catObj = p.categories || p.category;
+    const catName = (typeof catObj === 'object' ? catObj?.name : catObj) || '';
+    const catSlug = (typeof catObj === 'object' ? catObj?.slug : p.category_slug) || '';
+    const searchStr = (catName + ' ' + catSlug).toLowerCase();
+    return searchStr.includes("grazing");
+  });
+  const { data: galleryData } = usePublicGallery("grazing-tables");
+  const gallery = galleryData?.data ?? [];
   const [activeImg, setActiveImg] = useState<string | null>(null);
 
   const [form, setForm] = useState({
