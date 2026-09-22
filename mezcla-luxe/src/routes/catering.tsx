@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { ProductCard } from "@/components/ui-custom/ProductCard";
-import { usePublicProductsByCategory, usePublicGallery } from "@/hooks/usePublicApi";
+import { usePublicProducts, usePublicGallery } from "@/hooks/usePublicApi";
 import { useWhatsApp } from "@/hooks/useWhatsApp";
 import { FAQSection } from "@/components/sections/FAQSection";
 import { SectionHeader } from "@/components/ui-custom/SectionHeader";
@@ -42,8 +42,10 @@ const notIncluded = [
 
 function CateringPage() {
   const { generateWhatsAppLink } = useWhatsApp();
-  const { data, isLoading } = usePublicProductsByCategory("catering");
-  const items: any[] = data?.data ?? [];
+  const { data, isLoading } = usePublicProducts({ limit: 100 });
+  const items = (data?.data ?? []).filter((p: any) => 
+    p.category_slug?.includes("cater") || p.category?.toLowerCase().includes("cater")
+  );
 
   const { data: galleryData } = usePublicGallery("catering");
   const gallery = galleryData?.data ?? [];

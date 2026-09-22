@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { useWhatsApp } from "@/hooks/useWhatsApp";
-import { usePublicProductsByCategory, usePublicGallery } from "@/hooks/usePublicApi";
+import { usePublicProducts, usePublicGallery } from "@/hooks/usePublicApi";
 import { ProductCard } from "@/components/ui-custom/ProductCard";
 import { FAQSection } from "@/components/sections/FAQSection";
 import { SectionHeader } from "@/components/ui-custom/SectionHeader";
@@ -44,8 +44,10 @@ const notIncluded = [
 
 function SnackBoxesPage() {
   const { generateWhatsAppLink } = useWhatsApp();
-  const { data, isLoading } = usePublicProductsByCategory("snack-boxes");
-  const items: any[] = data?.data ?? [];
+  const { data, isLoading } = usePublicProducts({ limit: 100 });
+  const items = (data?.data ?? []).filter((p: any) => 
+    p.category_slug?.includes("snack") || p.category?.toLowerCase().includes("snack")
+  );
 
   const { data: galleryData } = usePublicGallery("snack-boxes");
   const gallery = galleryData?.data ?? [];

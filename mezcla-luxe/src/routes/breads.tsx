@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ProductCard } from "@/components/ui-custom/ProductCard";
-import { usePublicProductsByCategory } from "@/hooks/usePublicApi";
+import { usePublicProducts } from "@/hooks/usePublicApi";
 import breads from "@/assets/cat-breads.jpg";
 
 export const Route = createFileRoute("/breads")({
@@ -16,8 +16,10 @@ export const Route = createFileRoute("/breads")({
 });
 
 function BreadsPage() {
-  const { data, isLoading } = usePublicProductsByCategory("breads");
-  const items: any[] = data?.data ?? [];
+  const { data, isLoading } = usePublicProducts({ limit: 100 });
+  const items = (data?.data ?? []).filter((p: any) => 
+    p.category_slug?.includes("bread") || p.category?.toLowerCase().includes("bread")
+  );
   return (
     <>
       <section className="relative bg-cocoa overflow-hidden">

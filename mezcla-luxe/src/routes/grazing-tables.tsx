@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useWhatsApp } from "@/hooks/useWhatsApp";
 import { SectionHeader } from "@/components/ui-custom/SectionHeader";
 import { FAQSection } from "@/components/sections/FAQSection";
-import { usePublicGallery } from "@/hooks/usePublicApi";
+import { usePublicProducts, usePublicGallery, usePublicFaqs } from "@/hooks/usePublicApi";
 import { X, Sparkles, Users, Clock, MapPin, Diamond } from "lucide-react";
 
 export const Route = createFileRoute("/grazing-tables")({
@@ -93,8 +93,10 @@ const faqs = [
 
 function GrazingPage() {
   const { generateWhatsAppLink } = useWhatsApp();
-  const { data: galleryData } = usePublicGallery("grazing");
-  const gallery = galleryData?.data ?? [];
+  const { data, isLoading } = usePublicProducts({ limit: 100 });
+  const items = (data?.data ?? []).filter((p: any) => 
+    p.category_slug?.includes("grazing") || p.category?.toLowerCase().includes("grazing")
+  );
   const [activeImg, setActiveImg] = useState<string | null>(null);
 
   const [form, setForm] = useState({
