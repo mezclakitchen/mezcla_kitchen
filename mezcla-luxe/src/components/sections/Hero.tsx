@@ -21,8 +21,8 @@ export function Hero() {
         <div className="lg:col-span-6 flex flex-col justify-center relative z-10">
           <p className="eyebrow reveal">100% EGGLESS & VEGETARIAN • FSSAI LICENSED • BANGALORE</p>
           <h1 className="reveal reveal-delay-1 mt-6 font-display text-[2.5rem] sm:text-6xl lg:text-7xl leading-[1] text-cream">
-            {homepage.hero_title || "Made-to-order vegetarian food for "}
-            <span className="block italic text-gold">{homepage.hero_subtitle || "everyday and every celebration."}</span>
+            {homepage.hero_title || "Crafted for everyday "}
+            <span className="block italic text-gold">{homepage.hero_subtitle || "and every celebration."}</span>
           </h1>
           <p className="reveal reveal-delay-2 mt-7 max-w-xl text-base md:text-lg leading-relaxed text-ivory-muted">
             Mezcla is a 100% eggless, vegetarian home kitchen in Bangalore. Slow-fermented sourdough, celebration cakes, savoury bakes, mezze, snack boxes, grazing tables and hampers, all made fresh to order in small batches.
