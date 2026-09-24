@@ -9,8 +9,8 @@ export function CategoryCards() {
       <div className="container-luxe">
         <SectionHeader
           eyebrow="What we make"
-          title="Crafted for everyday moments and special occasions. "
-          subtitle="From naturally fermented sourdough and handcrafted desserts to celebration cakes, grazing tables and seasonal catering, every order is made fresh in our artisanal kitchen in Bangalore."
+          title="From daily loaves to celebration tables."
+          subtitle="At Mezcla, everything on this menu, from everyday breads to grazing tables, is eggless, vegetarian and made fresh to order in our Bangalore kitchen."
           align="center"
         />
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">

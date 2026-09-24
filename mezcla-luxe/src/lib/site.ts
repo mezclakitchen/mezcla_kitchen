@@ -17,7 +17,7 @@ export const site = {
   fssai: "FSSAI: 21225193002235",
   leadTime: "Most orders need 2–3 days notice",
   announcement:
-    "Handcrafted in small batches · Order 2–3 days in advance · Delivering across South & Central Bangalore",
+    "100% Eggless · Vegetarian · FSSAI Licensed · Delivering across South & Central Bangalore",
 };
 
 const BRAND_LINE = "— Team Mezcla";

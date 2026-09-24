@@ -13,7 +13,7 @@ export const Route = createFileRoute("/snack-boxes")({
   head: () => ({
     meta: [
       { title: "Gourmet Snack Boxes for Parties & Offices in Bangalore | Mezcla" },
-      { name: "description", content: "Handcrafted, individually packed snack and meal boxes for office meetings, birthday parties, kitty gatherings and events. Customisable, minimum 10 boxes." },
+      { name: "description", content: "100% eggless, vegetarian snack and meal boxes for offices, birthdays and kitty parties in Bangalore. Individually packed, made fresh to order. Minimum 10 boxes." },
       { property: "og:image", content: snackbox },
     ],
     links: [{ rel: "canonical", href: "https://mezclakitchen.in/snack-boxes" }],
@@ -22,24 +22,26 @@ export const Route = createFileRoute("/snack-boxes")({
 });
 
 const boxTypes = [
-  { t: "Office Snack Box", d: "A balanced spread—savouries, a small bake and fresh fruit. Perfect for meetings and team lunches." },
-  { t: "Birthday Party Box", d: "Fun, colourful and indulgent. Mini brownies, savouries and a sweet treat per person." },
-  { t: "High-Tea Box", d: "Artisanal finger sandwiches, scones and handcrafted bakes for a refined experience." },
-  { t: "Kitty Party Box", d: "Elegant, thoughtful and photogenic. A curated selection for intimate gatherings." },
-  { t: "Corporate Gift Box", d: "Branded, customisable boxes with a premium artisanal selection. Bulk-friendly." },
-  { t: "Kids' Party Box", d: "Eggless, kid-approved bites with sweet treats and wholesome savouries." },
+  { t: "Office Snack Box", d: "A balanced spread of savouries, a small bake and fresh fruit. Built for meetings and team lunches." },
+  { t: "Birthday Party Box", d: "Mini brownies, savouries and a sweet treat per person. Colourful, indulgent, easy to serve." },
+  { t: "High-Tea Box", d: "Finger sandwiches, scones and bakes, plated for a sit-down spread." },
+  { t: "Kitty Party Box", d: "A curated mix of savoury and sweet bites, styled to look good on the table." },
+  { t: "Corporate Gift Box", d: "Branded packaging with a premium selection. Bulk orders welcome, custom branding available." },
+  { t: "Kids' Party Box", d: "Kid-sized bites, sweet and savoury, easy for little hands." },
 ];
 
 const includes = [
-  "Freshly made in our artisan kitchen on the day of delivery",
+  "Made fresh to order, with final prep and packing done close to delivery",
+  "100% eggless, always",
   "Individually packed and sealed for hygiene",
-  "Customisable to dietary needs (eggless, vegan, GF on request)",
-  "Delivery across South & Central Bangalore",
+  "Cutlery and tissues included",
+  "Vegan and gluten-free options available on request",
+  "Delivery across Bangalore, delivery charges applicable",
 ];
 const notIncluded = [
-  "Orders below minimum quantity of 10 boxes",
-  "Same-day orders (3 days notice required)",
-  "Outstation delivery (available on request)",
+  "Orders below 10 boxes are accepted with a surcharge, down to a minimum of 5 boxes",
+  "All orders need 3 days' notice — no same-day delivery",
+  "Outstation delivery isn't available for snack boxes",
 ];
 
 function SnackBoxesPage() {
@@ -94,11 +96,11 @@ function SnackBoxesPage() {
               Curated for Every Gathering
             </div>
             <h1 className="font-display text-5xl md:text-7xl lg:text-[5.5rem] text-cream leading-[1.05] tracking-tight">
-              Handcrafted <br />
-              <span className="italic text-gold font-light">boxes, delivered fresh.</span>
+              Snack boxes, made fresh, <br />
+              <span className="italic text-gold font-light">boxed with care.</span>
             </h1>
             <p className="mt-8 text-ivory-muted/90 text-lg md:text-xl max-w-xl leading-relaxed font-light">
-              Individually packed snack and meal boxes made in-house—perfect for offices, birthday parties and kitty gatherings.
+              Individually packed snack and meal boxes, 100% eggless and made in-house, perfect for offices, birthdays and kitty parties.
             </p>
             <div className="mt-12 flex flex-wrap gap-4">
               <a href="#order" className="px-8 py-4 bg-gold text-cocoa font-bold uppercase tracking-widest text-xs rounded-full shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:bg-cream transition-all duration-300 hover:-translate-y-1">
@@ -117,10 +119,10 @@ function SnackBoxesPage() {
         <div className="container-luxe py-10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:p-8 md:p-10 md:gap-4 divide-y md:divide-y-0 md:divide-x divide-white/10">
             {[
-              { icon: <Package className="size-5 text-gold mb-4 opacity-80" strokeWidth={1.5} />, val: "Min. 10", label: "Boxes per Order" },
+              { icon: <Package className="size-5 text-gold mb-4 opacity-80" strokeWidth={1.5} />, val: "Min. 10-20", label: "Boxes per Order" },
+              { icon: <Sparkles className="size-5 text-gold mb-4 opacity-80" strokeWidth={1.5} />, val: "From ₹150", label: "Per Box" },
               { icon: <Clock className="size-5 text-gold mb-4 opacity-80" strokeWidth={1.5} />, val: "3 Days", label: "Advance Notice" },
-              { icon: <Users className="size-5 text-gold mb-4 opacity-80" strokeWidth={1.5} />, val: "Bangalore", label: "Delivery Area" },
-              { icon: <Sparkles className="size-5 text-gold mb-4 opacity-80" strokeWidth={1.5} />, val: "Custom", label: "Dietary Options" },
+              { icon: <CheckCircle2 className="size-5 text-gold mb-4 opacity-80" strokeWidth={1.5} />, val: "100% Eggless", label: "Every Box" },
             ].map((m, i) => (
               <div key={i} className="flex flex-col items-center justify-center text-center px-4 pt-4 md:pt-0">
                 {m.icon}

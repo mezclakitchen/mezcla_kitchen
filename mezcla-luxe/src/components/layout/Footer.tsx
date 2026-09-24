@@ -26,7 +26,7 @@ export function Footer() {
               <img src="/logo-filled.png" alt="Mezcla Logo" className="h-20 md:h-24 w-auto object-contain transition-transform duration-500 group-hover:scale-105 origin-left" />
             </Link>
             <p className="mt-8 max-w-sm text-base leading-relaxed text-ivory-muted/90">
-              Mezcla is an artisanal kitchen in Bangalore crafting handcrafted breads, desserts, grazing tables and curated food experiences. Every order is made fresh in small batches with thoughtfully sourced ingredients, bringing people together one memorable bite at a time.
+              Mezcla is a 100% eggless, vegetarian kitchen in Bangalore, crafting breads, desserts, grazing tables and curated food experiences. Every order is made fresh in small batches, bringing people together one memorable bite at a time.
             </p>
             
             <div className="mt-10 space-y-4 text-base text-ivory-muted/90">

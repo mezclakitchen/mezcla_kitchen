@@ -1,21 +1,21 @@
-import { Flame, Sprout, BadgeCheck } from "lucide-react";
+import { Sprout, BadgeCheck, Flame } from "lucide-react";
 
 const items = [
   { 
     icon: Flame, 
-    title: "Handcrafted in Small Batches ", 
-    desc: "Every loaf, dessert and grazing experience is made fresh to order in limited batches, ensuring exceptional quality and attention to every detail. " 
+    title: "Small Batches, Always Fresh", 
+    desc: "Nothing is pre-made or held over. Every loaf, cake and grazing spread is prepared after you order, in limited batches, so quality never gets stretched thin." 
   },
   { 
     icon: Sprout, 
-    title: "Thoughtfully Sourced Ingredients ", 
-    desc: "From premium couverture chocolate and extra virgin olive oil to fresh herbs and quality cheeses, we choose ingredients that let every flavour shine. " 
+    title: "Ingredients We Stand Behind", 
+    desc: "Couverture chocolate, extra virgin olive oil, fresh herbs, quality cheeses. We choose ingredients for flavour first; we avoid shortcuts." 
   },
   { 
     icon: BadgeCheck, 
-    title: "Made for Gathering", 
-    desc: "From everyday indulgences to milestone celebrations, our food is crafted to bring people together, one memorable bite at a time." 
-  },
+    title: "100% Eggless, FSSAI Licensed", 
+    desc: "Every item at Mezcla is eggless and vegetarian, made in an FSSAI-licensed kitchen. Trusted for birthdays, everyday orders and events alike." 
+  }
 ];
 
 export function TrustStrip() {
@@ -24,7 +24,7 @@ export function TrustStrip() {
       {/* Subtle background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-gold/5 blur-[120px] rounded-full pointer-events-none" />
       
-      <div className="container-luxe grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 relative z-10">
+      <div className="container-luxe grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 relative z-10">
         {items.map((i, index) => (
           <div 
             key={i.title}
@@ -34,9 +34,11 @@ export function TrustStrip() {
               <i.icon className="size-7 text-gold" strokeWidth={1.5} />
             </div>
             <h4 className="font-display text-2xl text-cream mb-4 tracking-wide">{i.title}</h4>
-            <p className="text-sm text-ivory-muted/80 leading-relaxed max-w-[280px]">
-              {i.desc}
-            </p>
+            {i.desc && (
+              <p className="text-sm text-ivory-muted/80 leading-relaxed max-w-[280px]">
+                {i.desc}
+              </p>
+            )}
           </div>
         ))}
       </div>

@@ -19,24 +19,25 @@ export const Route = createFileRoute("/workshops")({
 });
 
 const workshopTypes = [
-  { t: "Sourdough Baking", d: "Learn to make naturally fermented sourdough from scratch—starter, shaping, scoring and baking." },
+  { t: "Sourdough Baking", d: "Learn to make naturally fermented sourdough from scratch: starter, shaping, scoring and baking." },
   { t: "Mezze & Dips Board", d: "Craft a stunning spread with homemade hummus, muhammara, pesto and accompaniments." },
   { t: "Pizza Making", d: "Hand-stretch, top and bake your own pizza in a fun, social session for groups and team outings." },
-  { t: "Brownies & Bakes", d: "A sweet session—make fudgy brownies, butter biscuits and a seasonal bake to take home." },
+  { t: "Brownies & Bakes", d: "A sweet session: make fudgy brownies, butter biscuits and a seasonal bake to take home." },
   { t: "Grazing Board Styling", d: "Learn the art of building a beautiful, abundant grazing board. Perfect for hosts." },
   { t: "Corporate Team Workshop", d: "A fun, customisable food experience for teams, offsites and corporate bonding." },
 ];
 
 const includes = [
   "All ingredients and equipment provided",
+  "100% eggless and vegetarian, always",
   "Step-by-step guidance from Team Mezcla",
   "You take home everything you make",
   "Light refreshments during the session",
 ];
 const notIncluded = [
-  "Venue (workshops hosted at our kitchen or your space)",
-  "Sessions below minimum group size of 8",
-  "Same-week bookings (1 week notice required)",
+  "Groups smaller than 8 can be accommodated with a surcharge",
+  "1 week's notice is standard, though earlier dates may be possible depending on our schedule, please ask",
+  "Hosting at your space is available at an extra charge to cover time and transport",
 ];
 
 function WorkshopsPage() {
@@ -83,7 +84,7 @@ function WorkshopsPage() {
               <span className="italic text-gold font-light">Eat together.</span>
             </h1>
             <p className="mt-8 text-ivory-muted/90 text-lg md:text-xl max-w-xl leading-relaxed font-light">
-              Intimate, hands-on workshops in Bangalore—sourdough, pizza, mezze boards and more. Perfect for curious food lovers, small groups and team outings.
+              Intimate, hands-on workshops in Bangalore, sourdough, pizza, mezze boards and more, all 100% eggless and vegetarian. Perfect for curious food lovers, small groups and team outings.
             </p>
             <div className="mt-12 flex flex-wrap gap-4">
               <a href="#book" className="px-8 py-4 bg-gold text-cocoa font-bold uppercase tracking-widest text-xs rounded-full shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:bg-cream transition-all duration-300 hover:-translate-y-1">

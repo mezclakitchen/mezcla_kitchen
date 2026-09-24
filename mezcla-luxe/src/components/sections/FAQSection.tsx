@@ -8,7 +8,7 @@ export function FAQSection({
   category,
   customFaqs,
   title = <>Frequently <br /> <span className="italic">asked.</span></>,
-  subtitle = "Everything you need to know about ordering from Mezcla—from handcrafted breads and desserts to grazing tables, workshops and deliveries across Bangalore. If your question isn't answered below, we're just a message away",
+  subtitle = "Everything you need to know about ordering from Mezcla, from breads and desserts to grazing tables and deliveries across Bangalore. If your question isn't answered below, we're just a message away.",
 }: { 
   dark?: boolean; 
   category?: string;

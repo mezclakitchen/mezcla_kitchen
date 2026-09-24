@@ -36,18 +36,18 @@ function CakesPage() {
         <img src={cake} alt="" className="absolute inset-0 size-full object-cover opacity-30" width={1024} height={1280} />
         <div className="absolute inset-0 bg-gradient-to-r from-cocoa via-cocoa/80 to-cocoa/40" />
         <div className="container-luxe relative py-24 md:py-32 max-w-3xl">
-          <p className="eyebrow">Handcrafted & Eggless</p>
+          <p className="eyebrow">Made for the Moment</p>
           <h1 className="mt-5 font-display text-4xl sm:text-5xl md:text-7xl text-cream leading-[1.02]">
-            Celebration <span className="italic text-gold">Cakes</span>.
+            Cakes worth <span className="italic text-gold">cutting into.</span>
           </h1>
           <p className="mt-6 text-ivory-muted text-base md:text-lg max-w-xl leading-relaxed">
-            From elegant minimal cakes to fully customised celebration cakes — crafted with premium ingredients and natural flavours. No artificial colours. No shortcuts. Flavour comes first, always.
+            100% eggless celebration cakes, made with couverture chocolate and finished simply, no fondant, no over-the-top decor. Just good cake, done well
           </p>
         </div>
       </section>
 
       {/* Philosophy strip */}
-      <section className="bg-cocoa/5 border-y border-border py-10">
+      <section className="bg-cream py-10">
         <div className="container-luxe max-w-3xl text-center">
           <p className="font-display text-lg md:text-2xl text-ink leading-relaxed">
             "Our cakes are made with real ingredients — homemade fruit compotes, couverture chocolate and fresh seasonal produce. Every cake is designed to let the ingredients shine."

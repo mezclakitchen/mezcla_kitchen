@@ -5,6 +5,7 @@ import grazing from "@/assets/cat-grazing-tables.jpg";
 import catering from "@/assets/cat-catering.jpg";
 import foodHampers from "@/assets/cat-food-hampers.jpg";
 import bakes from "@/assets/cat-bakes-new.jpg";
+import cake from "@/assets/p-cake.jpg";
 
 export type CategoryCard = {
   slug: string;
@@ -21,9 +22,9 @@ export const categories: CategoryCard[] = [
   {
     slug: "breads",
     to: "/breads",
-    title: "Artisan Breads",
+    title: "Sourdough & Artisan Breads",
     eyebrow: "NATURALLY FERMENTED",
-    sub: " Slow-fermented sourdough, wholesome everyday loaves and speciality breads—freshly baked in small batches with quality ingredients.",
+    sub: "Slow-fermented sourdough, everyday loaves and speciality breads, baked fresh in-house.",
     image: breads,
     cta: "Explore Breads",
   },
@@ -32,7 +33,7 @@ export const categories: CategoryCard[] = [
     to: "/dips",
     title: "Dips & Mezze",
     eyebrow: "FRESHLY JARRED",
-    sub: "Creamy hummus, vibrant pestos, muhammara and seasonal spreads—crafted to elevate everything from snacks to dinner tables.",
+    sub: "Creamy hummus, vibrant pestos, muhammara and seasonal spreads, made to go from snacks to dinner tables.",
     image: dips,
     cta: "Explore Dips",
   },
@@ -41,16 +42,26 @@ export const categories: CategoryCard[] = [
     to: "/other-bakes",
     title: "Other Bakes & Desserts",
     eyebrow: "FRESH FROM THE OVEN",
-    sub: "From Korean cream cheese buns and Berliners to quiches, brownies and seasonal desserts—crafted for everyday indulgence.",
+    sub: "Korean cream cheese buns, Berliners, quiches, brownies and seasonal desserts, all eggless.",
     image: bakes,
     cta: "Explore Bakes",
   },
   {
+    slug: "cakes",
+    to: "/cakes",
+    title: "Cakes worth cutting into.",
+    eyebrow: "Made for the Moment",
+    sub: "100% eggless celebration cakes, made with couverture chocolate and finished simply, no fondant, no over-the-top decor. Just good cake, done well",
+    image: cake,
+    cta: "Enquire About Cakes",
+  },
+
+  {
     slug: "snack-boxes",
     to: "/snack-boxes",
     title: "Snack Boxes",
-    eyebrow: "CURATED FOR EVERY GATHERING",
-    sub: "Handcrafted, individually packed snack and meal boxes made fresh in-house—perfect for office meetings, birthday parties, kitty gatherings and celebrations.",
+    eyebrow: "FOR OFFICES & PARTIES",
+    sub: "Individually packed snack and meal boxes, made fresh in-house, perfect for office meetings, birthdays and get-togethers.",
     image: snackbox,
     cta: "Explore Snack Boxes",
   },
@@ -59,7 +70,7 @@ export const categories: CategoryCard[] = [
     to: "/grazing-tables",
     title: "Grazing Tables",
     eyebrow: "MADE FOR GATHERINGS",
-    sub: " Beautifully styled grazing tables featuring artisanal breads, cheeses, dips and handcrafted bites for memorable celebrations.",
+    sub: "Styled grazing tables with artisan breads, cheeses, dips and bites, set up at your venue for 15 to 100 guests.",
     image: grazing,
     imageClassName: "object-bottom scale-[1.25] origin-bottom group-hover:scale-[1.35]",
     cta: "Plan a Table",
@@ -69,7 +80,7 @@ export const categories: CategoryCard[] = [
     to: "/catering",
     title: "Corporate & Event Catering",
     eyebrow: "FOR EVERY OCCASION",
-    sub: "Wholesome, handcrafted food for offices, house parties and events—prepared fresh and delivered with care.",
+    sub: "Fresh, vegetarian food for offices, house parties and events, delivered with care.",
     image: catering,
     cta: "Plan Catering",
   },
@@ -78,7 +89,7 @@ export const categories: CategoryCard[] = [
     to: "/food-hampers",
     title: "Food Gift Hampers",
     eyebrow: "THOUGHTFULLY CURATED",
-    sub: "Artisanal hampers filled with handcrafted treats, perfect for festive gifting, client appreciation and special occasions.",
+    sub: "Curated hampers of eggless treats, perfect for festive gifting, client appreciation and special occasions.",
     image: foodHampers,
     cta: "Explore Hampers",
   },
@@ -128,10 +139,10 @@ export const menuCategories: CategoryCard[] = [
   {
     slug: "cakes",
     to: "/cakes",
-    title: "Cakes",
-    eyebrow: "HANDCRAFTED & EGGLESS",
-    sub: "From elegant minimal cakes to customised celebration cakes. Premium ingredients, natural flavours — no artificial colours or additives. Flavour comes first, always.",
-    image: bakes,
+    title: "Cakes worth cutting into.",
+    eyebrow: "Made for the Moment",
+    sub: "100% eggless celebration cakes, made with couverture chocolate and finished simply, no fondant, no over-the-top decor. Just good cake, done well",
+    image: cake,
     cta: "Enquire About Cakes",
   },
 ];

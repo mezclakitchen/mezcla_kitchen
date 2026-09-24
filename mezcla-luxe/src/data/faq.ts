@@ -3,11 +3,11 @@
 export const faqs = [
   {
     q: "Where are you based and where do you deliver?",
-    a: "We're a home kitchen in Bangalore. We currently deliver across South and Central Bangalore. For other parts of the city or outstation, please WhatsApp us — we'll find a way.",
+    a: "We're a cloud bakery with a commercial kitchen in Bangalore. We currently deliver across Bangalore, with delivery charges applied as per actuals via our courier partners (Porter, Rapido). For outstation deliveries, please WhatsApp us at 9892290606.",
   },
   {
     q: "How much notice do you need for an order?",
-    a: "Most products need 2–3 days' notice. Custom cakes, snack boxes and grazing tables are best confirmed 5–7 days prior. Festive hampers and large corporate orders need 3–4 weeks.",
+    a: "Most products need 1–2 days' notice. Custom cakes, snack boxes and grazing tables are best confirmed 5–7 days prior. Festive hampers and large corporate orders need 3–4 weeks.",
   },
   {
     q: "What is the minimum order for grazing tables?",
@@ -26,8 +26,8 @@ export const faqs = [
     a: "Yes — cakes, hampers, snack boxes and grazing tables are designed around your occasion, palate and budget. WhatsApp us with a few details and we'll respond personally.",
   },
   {
-    q: "Do you have vegetarian, eggless or vegan options?",
-    a: "Yes. Most of our menu is vegetarian; many items are eggless and several are vegan. Each product page lists its dietary tags.",
+    q: "Are your products eggless and vegetarian?",
+    a: "Yes. Everything at Mezcla is 100% eggless and vegetarian, always. Some items are also vegan; each product page lists its dietary tags.",
   },
   {
     q: "What is the minimum for corporate / bulk hampers?",
@@ -47,6 +47,6 @@ export const faqs = [
   },
   {
     q: "Are you FSSAI licensed?",
-    a: "Yes — Mezcla operates as an FSSAI licensed home kitchen. We follow strict hygiene, sourcing and packaging standards.",
+    a: "Yes — Mezcla operates out of an FSSAI-licensed commercial kitchen. We follow strict hygiene, sourcing and packaging standards.",
   },
 ];

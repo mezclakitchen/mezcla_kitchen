@@ -59,7 +59,7 @@ function AboutPage() {
             </h1>
             
             <p className="mt-8 text-ivory-muted/90 text-lg md:text-xl max-w-xl leading-relaxed font-light">
-              <em>Mezcla</em> means a mindful blend. Every loaf, every jar, and every hamper begins with a small idea: that food, when made with care, can hold a memory.
+              <em>Mezcla</em> means a mindful blend. Every loaf, every jar and every hamper begins with a small idea: that food, made with care, can hold a memory.
             </p>
             
             <div className="mt-12 flex flex-wrap gap-4">
@@ -136,16 +136,19 @@ function AboutPage() {
               {/* Story paragraphs */}
               <div className="space-y-6 text-ivory-muted/85 leading-[1.85] text-base md:text-[1.05rem] font-light">
                 <p>
-                  Mezcla was founded by <span className="text-cream font-medium">Monali Shah</span>, a food entrepreneur who believes that great food has the power to bring people together and create meaningful memories.
+                  Mezcla was founded by <span className="text-cream font-medium">Monali Shah</span>, who believes good food has the power to bring people together and create memories worth keeping.
                 </p>
                 <p>
-                  After spending years in the corporate world, Monali found herself increasingly drawn to the creativity, connection, and joy that food brings into people's lives. What began as a passion for hosting and experimenting with flavours gradually evolved into Mezcla — a brand built around thoughtful food experiences, artisanal products, and beautifully curated gatherings.
+                  After years in [corporate role/industry], Monali found herself pulled toward the creativity and connection that food brings into people's lives. What began as a love of hosting and experimenting with flavours grew into Mezcla, a kitchen built around honest food and thoughtfully curated gatherings.
                 </p>
                 <p>
-                  Today, Monali combines her business acumen with her love for food to create experiences that feel personal, memorable, and effortless. From handcrafted sourdough breads and desserts to grazing tables, catering, and custom hampers, every Mezcla offering is rooted in quality, attention to detail, and genuine hospitality.
+                  Mezcla is a vegetarian kitchen by conviction, not convenience. Monali comes from a Jain family where a vegetarian way of life runs deep, and that value shaped Mezcla from day one: a 100% eggless, vegetarian kitchen, so every loaf, cake and spread can be shared without question, whatever the guest list looks like.
                 </p>
                 <p>
-                  For Monali, Mezcla is about more than food. It's about <em className="text-cream not-italic">celebrating milestones</em>, fostering connections, and helping people create moments worth remembering. Every menu, table, and hamper is thoughtfully designed with the belief that the best experiences are often built around sharing good food with good company.
+                  Today, Monali combines her business background with her love for food to create experiences that feel personal and effortless. From sourdough and desserts to grazing tables, catering and custom hampers, every Mezcla offering is made in small batches and rooted in genuine hospitality.
+                </p>
+                <p>
+                  For Monali, Mezcla is about more than food. It's about celebrating milestones, building connections, and creating moments worth remembering.
                 </p>
               </div>
 
@@ -176,7 +179,7 @@ function AboutPage() {
       {/* Core Values (Bento Grid) */}
       <section className="bg-cream text-ink py-24 md:py-32">
         <div className="container-luxe">
-          <SectionHeader eyebrow="Why Mezcla" title="We don't do shortcuts." align="center" />
+          <SectionHeader eyebrow="WHY MEZCLA" title="We don't do shortcuts." align="center" />
           
           <div className="grid md:grid-cols-3 gap-6 mt-16">
             <div className="md:col-span-2 p-6 sm:p-8 md:p-14 rounded-3xl md:rounded-[2.5rem] bg-white border border-border hover:border-gold/30 hover:shadow-xl transition-all duration-500 group relative overflow-hidden">
@@ -186,7 +189,7 @@ function AboutPage() {
                 </div>
                 <h3 className="font-display text-2xl lg:text-3xl text-ink leading-snug">Slow Methods</h3>
                 <p className="mt-4 text-ink-muted leading-relaxed max-w-md">
-                  We believe in long fermentation and considered recipes. Good things take time, which is why everything we make is prepared fresh to order in small batches. No inventory shelves.
+                  Long fermentation, considered recipes, and a kitchen that's 100% eggless and vegetarian by conviction, not convenience. Good things take time, which is why everything is prepared fresh to order, in small batches.
                 </p>
               </div>
             </div>
@@ -197,7 +200,7 @@ function AboutPage() {
               </div>
               <h3 className="font-display text-xl text-ink">Honest Ingredients</h3>
               <p className="mt-3 text-ink-muted text-sm leading-relaxed">
-                Real butter, real chocolate, real fruit. We never use preservatives or artificial shortcuts.
+                Real butter, real couverture chocolate, real fruit. We never use preservatives, food colouring or shortcuts, on any product, for any order.
               </p>
             </div>
 
@@ -207,14 +210,14 @@ function AboutPage() {
               </div>
               <h3 className="font-display text-xl text-ink">FSSAI Certified</h3>
               <p className="mt-3 text-ink-muted text-sm leading-relaxed">
-                {fssai}. We maintain strict hygiene, sourcing, and packaging standards in our kitchen.
+                21225193002235. We maintain strict hygiene, sourcing and packaging standards in our kitchen.
               </p>
             </div>
 
             <div className="md:col-span-2 p-6 sm:p-8 md:p-14 rounded-3xl md:rounded-[2.5rem] bg-ink border border-ink hover:border-gold-deep/50 transition-all duration-500 flex flex-col justify-center items-start text-cream">
               <h3 className="font-display text-2xl lg:text-3xl">Personal Service</h3>
               <p className="mt-4 text-ivory-muted/80 leading-relaxed max-w-md">
-                Every single order is handled by a real human. We don't automate our care. We deliver when promised, across {serviceAreas}, because we know these moments can't wait.
+                Every order is handled by a real person. We don't automate our care. We deliver when promised, across Bangalore, because we know these moments can't wait.
               </p>
               <a href={generateWhatsAppLink(waMessages.menu)} target="_blank" rel="noreferrer" className="mt-8 px-8 py-4 bg-gold-deep text-white font-bold uppercase tracking-widest text-xs rounded-full shadow-[0_0_20px_rgba(184,134,11,0.2)] hover:bg-white hover:text-ink transition-all duration-300 hover:-translate-y-1">
                 Say Hello on WhatsApp

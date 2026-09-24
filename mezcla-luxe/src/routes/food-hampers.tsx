@@ -21,24 +21,25 @@ export const Route = createFileRoute("/food-hampers")({
 });
 
 const hamperStyles = [
-  { t: "Festive Hamper", d: "Seasonal bakes, artisan jars and handcrafted treats — beautifully boxed for Diwali, Christmas and Eid." },
-  { t: "Corporate Gift Hamper", d: "Thoughtfully curated, branded gifting for clients, teams and milestones. Minimum 10 units." },
+  { t: "Festive Hamper", d: "Seasonal bakes, artisan jars and handcrafted treats, boxed for Diwali, Christmas and Eid." },
+  { t: "Corporate Gift Hamper", d: "Curated, branded gifting for clients, teams and milestones. Minimum 10 units, bulk pricing from 50." },
   { t: "Wellness Hamper", d: "Granola, sourdough crackers, dips and wholesome bakes for the health-conscious." },
-  { t: "Baker's Hamper", d: "An indulgent assortment of our finest breads, spreads and jars — for the bread lover." },
-  { t: "Anniversary / Occasion Box", d: "A luxe, personalised selection for birthdays, anniversaries and thank-yous." },
-  { t: "Custom Hamper", d: "Build it from scratch. Choose your items, size and packaging. We handle the rest." },
+  { t: "Baker's Hamper", d: "An indulgent assortment of our finest breads, spreads and jars, for the bread lover." },
+  { t: "Anniversary / Occasion Box", d: "A personalised selection for birthdays, anniversaries and thank-yous." },
+  { t: "Custom Hamper", d: "Build it from scratch. Choose your items, size and packaging, we handle the rest." },
 ];
 
 const includes = [
-  "All products freshly made and packed on the day",
+  "All products made fresh and packed on the day of delivery",
+  "100% eggless and vegetarian, always",
   "Beautiful, premium kraft or white box packaging",
   "Personalised card or note on request",
   "Delivery across South & Central Bangalore",
 ];
 const notIncluded = [
-  "Outstation delivery (available at extra cost on request)",
-  "Orders below minimum for corporate hampers",
-  "Same-day orders (3 days notice required)",
+  "Corporate hampers: 10 units minimum. Below 50 units, pricing is per-unit and slightly higher than our bulk rate",
+  "All hampers need 3 days' notice, so we can source the right packaging",
+  "Outstation delivery is available at extra cost, on request",
 ];
 
 function FoodHampersPage() {
@@ -98,7 +99,7 @@ function FoodHampersPage() {
               <span className="italic text-gold font-light">actually remember.</span>
             </h1>
             <p className="mt-8 text-ivory-muted/90 text-lg md:text-xl max-w-xl leading-relaxed font-light">
-              Artisanal hampers filled with handcrafted treats—perfect for festive gifting, client appreciation and every special occasion.
+              100% eggless, vegetarian hampers filled with handcrafted treats, made to order for festive gifting, client appreciation and every special occasion.
             </p>
             <div className="mt-12 flex flex-wrap gap-4">
               <a href="#order" className="px-8 py-4 bg-gold text-cocoa font-bold uppercase tracking-widest text-xs rounded-full shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:bg-cream transition-all duration-300 hover:-translate-y-1">
@@ -119,7 +120,7 @@ function FoodHampersPage() {
             {[
               { icon: <Gift className="size-5 text-gold mb-4 opacity-80" strokeWidth={1.5} />, val: "Custom", label: "Fully Customisable" },
               { icon: <Clock className="size-5 text-gold mb-4 opacity-80" strokeWidth={1.5} />, val: "3 Days", label: "Advance Notice" },
-              { icon: <Heart className="size-5 text-gold mb-4 opacity-80" strokeWidth={1.5} />, val: "Personal", label: "Card Included" },
+              { icon: <CheckCircle2 className="size-5 text-gold mb-4 opacity-80" strokeWidth={1.5} />, val: "100% Eggless", label: "Every Hamper" },
               { icon: <Sparkles className="size-5 text-gold mb-4 opacity-80" strokeWidth={1.5} />, val: "Fresh", label: "Made to Order" },
             ].map((m, i) => (
               <div key={i} className="flex flex-col items-center justify-center text-center px-4 pt-4 md:pt-0">

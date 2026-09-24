@@ -37,19 +37,18 @@ export function OurPhilosophy() {
           <div className="flex flex-col justify-center">
             <p className="eyebrow !text-gold mb-4">Our Philosophy</p>
             <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-cream leading-[1.1] mb-6">
-              We don't just make food—<br />
-              <span className="italic text-gold/90">we create moments that bring people together.</span>
+              Food made with <span className="italic text-gold/90">intention.</span>
             </h2>
             
             <div className="space-y-6 text-ivory-muted/90 text-sm md:text-base leading-relaxed max-w-lg">
               <p>
-                At Mezcla, we believe that the most memorable moments are shared around good food. Whether it's a quiet breakfast with fresh sourdough, a birthday celebrated with cake, or friends gathered around a beautifully curated grazing table, every bite has the power to create lasting memories. 
+                Good food is meant to be shared. A quiet breakfast with fresh sourdough, a birthday cut into slices, friends gathered around a grazing table, an evening we didn't plan but didn't want to end. We've built Mezcla around those moments.
               </p>
               <p>
-                That's why everything we make is handcrafted fresh in small batches, using thoughtfully sourced ingredients and meticulous attention to detail. We never use preservatives or shortcuts—just honest food, made with care.
+                Every dish starts with a question: does this deserve a place at the table? That's why we ferment slowly, source with care and finish everything by hand.
               </p>
               <p>
-                From everyday indulgences to life's biggest celebrations, our purpose is simple: to create food that's worth gathering around.
+                Not indulgence for its own sake. Food worth pausing for.
               </p>
             </div>
 

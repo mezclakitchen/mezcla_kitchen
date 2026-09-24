@@ -62,7 +62,7 @@ export function SubscribeSection() {
                 <span className="italic text-gold">what's baking.</span>
               </h2>
               <p className="text-ivory-muted/90 leading-relaxed text-sm md:text-base max-w-md">
-                Be the first to hear about seasonal specials, workshops, festive gifting, new menu additions and exclusive community offers. 
+                Be the first to hear about seasonal specials, new menu additions and festive slots.
               </p>
             </div>
             

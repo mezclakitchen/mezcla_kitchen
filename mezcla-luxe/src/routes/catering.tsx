@@ -12,7 +12,7 @@ export const Route = createFileRoute("/catering")({
   head: () => ({
     meta: [
       { title: "Corporate & Event Catering in Bangalore | Mezcla" },
-      { name: "description", content: "Wholesome, handcrafted food for offices, house parties and events—prepared fresh and delivered with care." },
+      { name: "description", content: "Fresh, 100% eggless and vegetarian food for offices, house parties and events, prepared to order and delivered with care." },
       { property: "og:image", content: cateringImg },
     ],
     links: [{ rel: "canonical", href: "https://mezclakitchen.in/catering" }],
@@ -22,22 +22,62 @@ export const Route = createFileRoute("/catering")({
 
 const eventTypes = [
   { t: "Corporate Lunches", d: "Wholesome, balanced meals for your team. Perfect for board meetings and team-building days." },
-  { t: "House Parties", d: "Intimate gatherings made effortless with our curated spreads and artisanal grazing options." },
-  { t: "Brand Events", d: "Elevated, aesthetically pleasing food setups that align with your brand's premium identity." },
-  { t: "Weddings & Celebrations", d: "Bespoke menus crafted to make your special days unforgettable, with a focus on fresh ingredients." },
+  { t: "House Parties", d: "Intimate gatherings made effortless with curated spreads and grazing options." },
+  { t: "Brand Events", d: "Elevated, aesthetically pleasing food setups that align with your brand's identity." },
+  { t: "Weddings & Celebrations", d: "Bespoke menus crafted around fresh ingredients, made to fit your day." },
 ];
 
 const includes = [
   "Bespoke menu planning tailored to your event",
-  "Freshly prepared in our artisan kitchen",
-  "Premium, aesthetic presentation and setup options",
-  "Dietary accommodations (vegan, gluten-free, eggless)",
+  "Freshly prepared in our kitchen",
+  "100% eggless and vegetarian, always",
+  "Premium presentation and setup options",
+  "Vegan and gluten-free options available on request",
 ];
 
 const notIncluded = [
-  "Events with fewer than 15 guests",
-  "Same-day catering (minimum 5 days notice required)",
-  "Full waitstaff service (setup and drop-off only, unless discussed)",
+  "Minimum 15 guests; we're currently unable to take smaller events",
+  "5 days' notice is required; earlier dates may sometimes be possible, please ask",
+  "We currently don't offer waitstaff, setup and drop-off only",
+];
+
+const cateringFaqs = [
+  {
+    q: "Where are you based and where do you deliver?",
+    a: "We're a commercial kitchen in Bangalore. We currently deliver across Bangalore, with delivery charges applicable as per actuals."
+  },
+  {
+    q: "What's the minimum guest count for catering?",
+    a: "We cater for a minimum of 15 guests. We're currently unable to take on smaller events."
+  },
+  {
+    q: "How much notice do you need?",
+    a: "We need at least 5 days' notice for corporate and event catering. Earlier dates may sometimes be possible, so it's worth asking even if your event is sooner."
+  },
+  {
+    q: "Do you provide waitstaff?",
+    a: "Not at the moment. We handle setup and drop-off; food is presented ready to serve, but we don't currently offer waitstaff for the event itself."
+  },
+  {
+    q: "Do you take custom menus?",
+    a: "Yes — every menu is planned around your event, guest count, occasion and budget. WhatsApp us with a few details and we'll respond personally."
+  },
+  {
+    q: "Do you have vegetarian, eggless or vegan options?",
+    a: "Yes. Everything we cater is 100% eggless and vegetarian, always. Vegan and gluten-free options are available on request."
+  },
+  {
+    q: "How do I confirm a booking?",
+    a: "Drop us a message on WhatsApp. We'll share a quote and menu options. Bookings are confirmed only after an advance payment."
+  },
+  {
+    q: "What is your refund / cancellation policy?",
+    a: "Because everything is prepared fresh for your event, cancellations for catering and bulk orders are accepted up to 7 days before the event. Full policy on our Refunds page."
+  },
+  {
+    q: "Are you FSSAI licensed?",
+    a: "Yes — Mezcla operates out of an FSSAI-licensed commercial kitchen. We follow strict hygiene, sourcing and packaging standards."
+  }
 ];
 
 function CateringPage() {
@@ -96,7 +136,7 @@ function CateringPage() {
               <span className="italic text-gold font-light">Event Catering.</span>
             </h1>
             <p className="mt-8 text-ivory-muted/90 text-lg md:text-xl max-w-xl leading-relaxed font-light">
-              Wholesome, handcrafted food for offices, house parties and events—prepared fresh and delivered with care.
+              Fresh, 100% eggless and vegetarian food for offices, house parties and events, prepared to order and delivered with care.
             </p>
             <div className="mt-12 flex flex-wrap gap-4">
               <a href="#order" className="px-8 py-4 bg-gold text-cocoa font-bold uppercase tracking-widest text-xs rounded-full shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:bg-cream transition-all duration-300 hover:-translate-y-1">
@@ -255,7 +295,10 @@ function CateringPage() {
         </section>
       )}
 
-      <FAQSection category="catering" />
+      <FAQSection 
+        customFaqs={cateringFaqs} 
+        subtitle="Everything you need to know about corporate and event catering from Mezcla. If your question isn't answered below, we're just a message away." 
+      />
 
       <style>{`
         .luxe-input { width:100%; padding:1rem 1.25rem; border-radius:1rem; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.1); color:var(--color-cream); font-size:0.95rem; transition:all 0.3s ease; }

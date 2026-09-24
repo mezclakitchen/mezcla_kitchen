@@ -162,7 +162,7 @@ function GrazingPage() {
               <span className="italic text-gold font-light">centrepiece of every celebration.</span>
             </h1>
             <p className="mt-8 text-ivory-muted/90 text-lg md:text-xl max-w-xl leading-relaxed font-light">
-              From intimate brunches and birthdays to weddings, baby showers and corporate gatherings, our grazing tables are designed to bring people together over beautifully presented, handcrafted food.
+              From intimate brunches and birthdays to weddings, baby showers and corporate gatherings, our grazing tables bring people together over a beautifully presented, 100% eggless and vegetarian spread.
             </p>
             <div className="mt-12 flex flex-wrap gap-4">
               <a href="#plan" className="px-8 py-4 bg-gold text-cocoa font-bold uppercase tracking-widest text-xs rounded-full shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:bg-cream transition-all duration-300 hover:-translate-y-1">
@@ -183,8 +183,8 @@ function GrazingPage() {
         <div className="container-luxe py-10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:p-8 md:p-10 md:gap-4 divide-y md:divide-y-0 md:divide-x divide-white/10">
             {[
-              { icon: <Users className="size-5 text-gold mb-4 opacity-80" strokeWidth={1.5} />, val: "15 – 100", label: "Guest Capacity" },
-              { icon: <Clock className="size-5 text-gold mb-4 opacity-80" strokeWidth={1.5} />, val: "45–60 min", label: "On-site Setup Time" },
+              { icon: <Users className="size-5 text-gold mb-4 opacity-80" strokeWidth={1.5} />, val: "15–100", label: "Guest Capacity" },
+              { icon: <Clock className="size-5 text-gold mb-4 opacity-80" strokeWidth={1.5} />, val: "60–90 min", label: "On-site Setup Time" },
               { icon: <MapPin className="size-5 text-gold mb-4 opacity-80" strokeWidth={1.5} />, val: "Bangalore", label: "Service Area" },
               { icon: <Diamond className="size-5 text-gold mb-4 opacity-80" strokeWidth={1.5} />, val: "Bespoke", label: "Custom Menus" },
             ].map((m, i) => (
@@ -208,13 +208,13 @@ function GrazingPage() {
             </h2>
             <div className="mt-8 space-y-5 text-ink/70 text-base md:text-lg leading-relaxed">
               <p>
-                A grazing table invites people to slow down, gather around and enjoy food the way it's meant to be shared.
+                A grazing table invites people to slow down, gather round and pick as they please.
               </p>
               <p>
-                At Mezcla, every table is individually designed to suit your celebration. We combine artisan breads, handcrafted dips, premium cheeses, fresh fruits, desserts and savoury bites into a spread that's as inviting to look at as it is to eat.
+                At Mezcla, every table is individually designed to suit your celebration. We combine artisan breads, dips, premium cheeses, fresh fruit, desserts and savoury bites, all eggless and vegetarian, into a spread that's as good to look at as it is to eat.
               </p>
               <p className="font-medium text-ink">
-                No two celebrations are the same—and neither are our grazing tables.
+                No two celebrations are the same, and neither are our grazing tables.
               </p>
             </div>
           </div>

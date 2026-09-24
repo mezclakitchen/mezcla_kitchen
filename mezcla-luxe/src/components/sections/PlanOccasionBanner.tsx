@@ -15,7 +15,7 @@ export function PlanOccasionBanner() {
               <span className="italic text-gold">Celebrate, Gather & Create</span>
             </h2>
             <p className="mt-5 text-ivory-muted max-w-md leading-relaxed">
-            Whether you're planning an intimate celebration, a corporate gathering, a beautifully styled grazing table or a hands-on pizza workshop, we create thoughtfully curated experiences centred around great food and meaningful connections.
+              From an intimate celebration to a corporate gathering, a styled grazing table or a hands-on pizza workshop, we build experiences around good food and good company.
             </p>
             <div className="mt-8 flex flex-wrap gap-3 justify-center">
               <Link to="/plan-event" className="btn-gold">Plan Your Event</Link>

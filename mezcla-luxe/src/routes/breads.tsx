@@ -35,7 +35,7 @@ function BreadsPage() {
             Artisan <span className="italic text-gold">breads</span>.
           </h1>
           <p className="mt-6 text-ivory-muted text-base md:text-lg max-w-xl leading-relaxed">
-            Long-fermented sourdough (available every Wednesday) and a range of speciality breads — Japanese milk bread, focaccia, pita, kulcha, baguette and more. All baked fresh to order.
+            Slow-fermented sourdough, available every Wednesday, and a range of speciality breads — Japanese milk bread, focaccia, pita, kulcha, baguette and more. Every loaf is 100% eggless and baked fresh to order.
           </p>
         </div>
       </section>

@@ -19,13 +19,13 @@ export function Hero() {
     <section className="relative overflow-hidden">
       <div className="container-luxe relative grid lg:grid-cols-12 gap-12 lg:gap-8 pt-8 lg:pt-10 pb-24 lg:pb-32">
         <div className="lg:col-span-6 flex flex-col justify-center relative z-10">
-          <p className="eyebrow reveal">HANDCRAFTED • EGGLESS • MADE IN BANGALORE</p>
+          <p className="eyebrow reveal">100% EGGLESS & VEGETARIAN • FSSAI LICENSED • BANGALORE</p>
           <h1 className="reveal reveal-delay-1 mt-6 font-display text-[2.5rem] sm:text-6xl lg:text-7xl leading-[1] text-cream">
-            {homepage.hero_title || "Every gathering ,"}
-            <span className="block italic text-gold">{homepage.hero_subtitle || "deserves good food."}</span>
+            {homepage.hero_title || "Made-to-order vegetarian food for "}
+            <span className="block italic text-gold">{homepage.hero_subtitle || "everyday and every celebration."}</span>
           </h1>
           <p className="reveal reveal-delay-2 mt-7 max-w-xl text-base md:text-lg leading-relaxed text-ivory-muted">
-            At Mezcla, we create handcrafted breads, celebration cakes, artisanal desserts and beautifully curated grazing experiences. Everything is made fresh to order in small batches using thoughtfully sourced ingredients—because memorable moments deserve memorable food.
+            Mezcla is a 100% eggless, vegetarian home kitchen in Bangalore. Slow-fermented sourdough, celebration cakes, savoury bakes, mezze, snack boxes, grazing tables and hampers, all made fresh to order in small batches.
           </p>
 
           <div className="reveal reveal-delay-3 mt-9 flex flex-wrap items-center gap-3">
@@ -36,10 +36,10 @@ export function Hero() {
               className="btn-gold"
             >
               <WhatsAppIcon className="size-4" />
-              {homepage.hero_cta_primary || "See Menu on WhatsApp"}
+              {homepage.hero_cta_primary || "See This Week's Menu on WhatsApp"}
             </a>
-            <Link to="/grazing-tables" className="btn-ghost-gold">
-              {homepage.hero_cta_secondary || "Plan a Grazing Table"}
+            <Link to="/products" className="btn-ghost-gold">
+              {homepage.hero_cta_secondary || "Explore the Menu"}
             </Link>
           </div>
 
