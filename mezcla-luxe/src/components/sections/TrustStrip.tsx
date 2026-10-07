@@ -9,7 +9,7 @@ const items = [
   { 
     icon: Sprout, 
     title: "Ingredients We Stand Behind", 
-    desc: "Couverture chocolate, extra virgin olive oil, fresh herbs, quality cheeses. We choose ingredients for flavour first; we avoid shortcuts." 
+    desc: "Couverture chocolate, extra virgin olive oil, fresh herbs, quality cheeses. We choose ingredients for flavour first." 
   },
   { 
     icon: BadgeCheck, 

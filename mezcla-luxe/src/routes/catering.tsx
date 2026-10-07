@@ -12,7 +12,11 @@ export const Route = createFileRoute("/catering")({
   head: () => ({
     meta: [
       { title: "Corporate & Event Catering in Bangalore | Mezcla" },
-      { name: "description", content: "Fresh, 100% eggless and vegetarian food for offices, house parties and events, prepared to order and delivered with care." },
+      {
+        name: "description",
+        content:
+          "Fresh, 100% eggless and vegetarian food for offices, house parties and events, prepared to order and delivered with care.",
+      },
       { property: "og:image", content: cateringImg },
     ],
     links: [{ rel: "canonical", href: "https://mezclakitchen.in/catering" }],
@@ -21,10 +25,22 @@ export const Route = createFileRoute("/catering")({
 });
 
 const eventTypes = [
-  { t: "Corporate Lunches", d: "Wholesome, balanced meals for your team. Perfect for board meetings and team-building days." },
-  { t: "House Parties", d: "Intimate gatherings made effortless with curated spreads and grazing options." },
-  { t: "Brand Events", d: "Elevated, aesthetically pleasing food setups that align with your brand's identity." },
-  { t: "Weddings & Celebrations", d: "Bespoke menus crafted around fresh ingredients, made to fit your day." },
+  {
+    t: "Corporate Lunches",
+    d: "Wholesome, balanced meals for your team. Perfect for board meetings and team-building days.",
+  },
+  {
+    t: "House Parties",
+    d: "Intimate gatherings made effortless with curated spreads and grazing options.",
+  },
+  {
+    t: "Brand Events",
+    d: "Elevated, aesthetically pleasing food setups that align with your brand's identity.",
+  },
+  {
+    t: "Weddings & Celebrations",
+    d: "Bespoke menus crafted around fresh ingredients, made to fit your day.",
+  },
 ];
 
 const includes = [
@@ -44,40 +60,40 @@ const notIncluded = [
 const cateringFaqs = [
   {
     q: "Where are you based and where do you deliver?",
-    a: "We're a commercial kitchen in Bangalore. We currently deliver across Bangalore, with delivery charges applicable as per actuals."
+    a: "We're a commercial kitchen in Bangalore. We currently deliver across Bangalore, with delivery charges applicable as per actuals.",
   },
   {
     q: "What's the minimum guest count for catering?",
-    a: "We cater for a minimum of 15 guests. We're currently unable to take on smaller events."
+    a: "We cater for a minimum of 15 guests. We're currently unable to take on smaller events.",
   },
   {
     q: "How much notice do you need?",
-    a: "We need at least 5 days' notice for corporate and event catering. Earlier dates may sometimes be possible, so it's worth asking even if your event is sooner."
+    a: "We need at least 5 days' notice for corporate and event catering. Earlier dates may sometimes be possible, so it's worth asking even if your event is sooner.",
   },
   {
     q: "Do you provide waitstaff?",
-    a: "Not at the moment. We handle setup and drop-off; food is presented ready to serve, but we don't currently offer waitstaff for the event itself."
+    a: "Not at the moment. We handle setup and drop-off; food is presented ready to serve, but we don't currently offer waitstaff for the event itself.",
   },
   {
     q: "Do you take custom menus?",
-    a: "Yes — every menu is planned around your event, guest count, occasion and budget. WhatsApp us with a few details and we'll respond personally."
+    a: "Yes — every menu is planned around your event, guest count, occasion and budget. WhatsApp us with a few details and we'll respond personally.",
   },
   {
     q: "Do you have vegetarian, eggless or vegan options?",
-    a: "Yes. Everything we cater is 100% eggless and vegetarian, always. Vegan and gluten-free options are available on request."
+    a: "Yes. Everything we cater is 100% eggless and vegetarian, always. Vegan and gluten-free options are available on request.",
   },
   {
     q: "How do I confirm a booking?",
-    a: "Drop us a message on WhatsApp. We'll share a quote and menu options. Bookings are confirmed only after an advance payment."
+    a: "Drop us a message on WhatsApp. We'll share a quote and menu options. Bookings are confirmed only after an advance payment.",
   },
   {
     q: "What is your refund / cancellation policy?",
-    a: "Because everything is prepared fresh for your event, cancellations for catering and bulk orders are accepted up to 7 days before the event. Full policy on our Refunds page."
+    a: "Because everything is prepared fresh for your event, cancellations for catering and bulk orders are accepted up to 7 days before the event. Full policy on our Refunds page.",
   },
   {
     q: "Are you FSSAI licensed?",
-    a: "Yes — Mezcla operates out of an FSSAI-licensed commercial kitchen. We follow strict hygiene, sourcing and packaging standards."
-  }
+    a: "Yes — Mezcla operates out of an FSSAI-licensed commercial kitchen. We follow strict hygiene, sourcing and packaging standards.",
+  },
 ];
 
 function CateringPage() {
@@ -85,9 +101,9 @@ function CateringPage() {
   const { data, isLoading } = usePublicProducts({ limit: 100 });
   const items = (data?.data ?? []).filter((p: any) => {
     const catObj = p.categories || p.category;
-    const catName = (typeof catObj === 'object' ? catObj?.name : catObj) || '';
-    const catSlug = (typeof catObj === 'object' ? catObj?.slug : p.category_slug) || '';
-    const searchStr = (catName + ' ' + catSlug).toLowerCase();
+    const catName = (typeof catObj === "object" ? catObj?.name : catObj) || "";
+    const catSlug = (typeof catObj === "object" ? catObj?.slug : p.category_slug) || "";
+    const searchStr = (catName + " " + catSlug).toLowerCase();
     return searchStr.includes("cater");
   });
 
@@ -121,7 +137,11 @@ function CateringPage() {
           <div className="hidden lg:block bg-gradient-to-r from-espresso via-espresso/95 to-transparent z-10" />
           <div className="absolute inset-0 bg-espresso/80 lg:hidden z-10" />
           <div className="absolute inset-0 lg:left-[40%]">
-            <img src={cateringImg} alt="Catering by Mezcla" className="size-full object-cover opacity-50 lg:opacity-90" />
+            <img
+              src={cateringImg}
+              alt="Catering by Mezcla"
+              className="size-full object-cover opacity-50 lg:opacity-90"
+            />
             <div className="hidden lg:block absolute inset-y-0 left-0 w-48 bg-gradient-to-r from-espresso to-transparent" />
           </div>
         </div>
@@ -136,13 +156,20 @@ function CateringPage() {
               <span className="italic text-gold font-light">Event Catering.</span>
             </h1>
             <p className="mt-8 text-ivory-muted/90 text-lg md:text-xl max-w-xl leading-relaxed font-light">
-              Fresh, 100% eggless and vegetarian food for offices, house parties and events, prepared to order and delivered with care.
+              Fresh, 100% eggless and vegetarian food for offices, house parties and events,
+              prepared to order and delivered with care.
             </p>
             <div className="mt-12 flex flex-wrap gap-4">
-              <a href="#order" className="px-8 py-4 bg-gold text-cocoa font-bold uppercase tracking-widest text-xs rounded-full shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:bg-cream transition-all duration-300 hover:-translate-y-1">
+              <a
+                href="#order"
+                className="px-8 py-4 bg-gold text-cocoa font-bold uppercase tracking-widest text-xs rounded-full shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:bg-cream transition-all duration-300 hover:-translate-y-1"
+              >
                 Enquire Now
               </a>
-              <a href="#menu" className="px-8 py-4 border border-white/20 text-cream hover:border-gold hover:text-gold font-bold uppercase tracking-widest text-xs rounded-full backdrop-blur-sm transition-all duration-300 hover:-translate-y-1">
+              <a
+                href="#menu"
+                className="px-8 py-4 border border-white/20 text-cream hover:border-gold hover:text-gold font-bold uppercase tracking-widest text-xs rounded-full backdrop-blur-sm transition-all duration-300 hover:-translate-y-1"
+              >
                 View Menu
               </a>
             </div>
@@ -155,15 +182,36 @@ function CateringPage() {
         <div className="container-luxe py-10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:p-8 md:p-10 md:gap-4 divide-y md:divide-y-0 md:divide-x divide-white/10">
             {[
-              { icon: <Users className="size-5 text-gold mb-4 opacity-80" strokeWidth={1.5} />, val: "15+", label: "Minimum Guests" },
-              { icon: <Clock className="size-5 text-gold mb-4 opacity-80" strokeWidth={1.5} />, val: "5 Days", label: "Advance Notice" },
-              { icon: <Building className="size-5 text-gold mb-4 opacity-80" strokeWidth={1.5} />, val: "Bangalore", label: "Delivery Area" },
-              { icon: <Sparkles className="size-5 text-gold mb-4 opacity-80" strokeWidth={1.5} />, val: "Bespoke", label: "Menu Curation" },
+              {
+                icon: <Users className="size-5 text-gold mb-4 opacity-80" strokeWidth={1.5} />,
+                val: "15+",
+                label: "Minimum Guests",
+              },
+              {
+                icon: <Clock className="size-5 text-gold mb-4 opacity-80" strokeWidth={1.5} />,
+                val: "5 Days",
+                label: "Advance Notice",
+              },
+              {
+                icon: <Building className="size-5 text-gold mb-4 opacity-80" strokeWidth={1.5} />,
+                val: "Bangalore",
+                label: "Delivery Area",
+              },
+              {
+                icon: <Sparkles className="size-5 text-gold mb-4 opacity-80" strokeWidth={1.5} />,
+                val: "Bespoke",
+                label: "Menu Curation",
+              },
             ].map((m, i) => (
-              <div key={i} className="flex flex-col items-center justify-center text-center px-4 pt-4 md:pt-0">
+              <div
+                key={i}
+                className="flex flex-col items-center justify-center text-center px-4 pt-4 md:pt-0"
+              >
                 {m.icon}
                 <p className="font-display text-2xl text-cream mb-1">{m.val}</p>
-                <p className="text-[0.65rem] uppercase tracking-widest text-ivory-muted/60 font-semibold">{m.label}</p>
+                <p className="text-[0.65rem] uppercase tracking-widest text-ivory-muted/60 font-semibold">
+                  {m.label}
+                </p>
               </div>
             ))}
           </div>
@@ -176,9 +224,16 @@ function CateringPage() {
           <SectionHeader eyebrow="Events" title="Catering for every moment." dark />
           <div className="grid sm:grid-cols-2 gap-6 mt-12">
             {eventTypes.map((s) => (
-              <div key={s.t} className="rounded-3xl bg-espresso border border-white/5 p-6 sm:p-8 md:p-10 hover:border-gold/40 hover:-translate-y-1 transition-all duration-500 group">
-                <p className="text-[0.65rem] font-bold uppercase tracking-widest text-gold/70 mb-4">Event Type</p>
-                <h3 className="font-display text-2xl text-cream group-hover:text-gold transition-colors">{s.t}</h3>
+              <div
+                key={s.t}
+                className="rounded-3xl bg-espresso border border-white/5 p-6 sm:p-8 md:p-10 hover:border-gold/40 hover:-translate-y-1 transition-all duration-500 group"
+              >
+                <p className="text-[0.65rem] font-bold uppercase tracking-widest text-gold/70 mb-4">
+                  Event Type
+                </p>
+                <h3 className="font-display text-2xl text-cream group-hover:text-gold transition-colors">
+                  {s.t}
+                </h3>
                 <p className="mt-4 text-ivory-muted/80 text-sm leading-relaxed">{s.d}</p>
               </div>
             ))}
@@ -190,26 +245,42 @@ function CateringPage() {
       <section className="bg-cream py-24 md:py-32">
         <div className="container-luxe grid lg:grid-cols-2 gap-8 lg:gap-16">
           <div className="p-6 sm:p-8 md:p-14 rounded-3xl md:rounded-[2.5rem] bg-white border border-gold/20 shadow-soft relative overflow-hidden">
-            <div className="absolute top-0 right-0 p-8 opacity-10"><Sparkles className="size-32 text-gold-deep" /></div>
+            <div className="absolute top-0 right-0 p-8 opacity-10">
+              <Sparkles className="size-32 text-gold-deep" />
+            </div>
             <div className="relative z-10">
-              <p className="inline-block px-3 py-1 rounded-full bg-gold/10 border border-gold/20 text-xs font-bold uppercase tracking-widest text-gold-deep mb-6">Included</p>
-              <h3 className="font-display text-3xl md:text-4xl text-ink">What's part of the service</h3>
+              <p className="inline-block px-3 py-1 rounded-full bg-gold/10 border border-gold/20 text-xs font-bold uppercase tracking-widest text-gold-deep mb-6">
+                Included
+              </p>
+              <h3 className="font-display text-3xl md:text-4xl text-ink">
+                What's part of the service
+              </h3>
               <ul className="mt-10 space-y-5">
                 {includes.map((i) => (
-                  <li key={i} className="flex gap-4 text-base md:text-lg text-ink-muted items-start">
-                    <CheckCircle2 className="size-6 text-gold-deep shrink-0" />{i}
+                  <li
+                    key={i}
+                    className="flex gap-4 text-base md:text-lg text-ink-muted items-start"
+                  >
+                    <CheckCircle2 className="size-6 text-gold-deep shrink-0" />
+                    {i}
                   </li>
                 ))}
               </ul>
             </div>
           </div>
           <div className="p-6 sm:p-8 md:p-14 rounded-3xl md:rounded-[2.5rem] bg-ink/[0.02] border border-border">
-            <p className="inline-block px-3 py-1 rounded-full bg-ink/5 border border-ink/10 text-xs font-bold uppercase tracking-widest text-ink-muted/80 mb-6">Honest Note</p>
+            <p className="inline-block px-3 py-1 rounded-full bg-ink/5 border border-ink/10 text-xs font-bold uppercase tracking-widest text-ink-muted/80 mb-6">
+              Honest Note
+            </p>
             <h3 className="font-display text-3xl md:text-4xl text-ink/80">Good to know</h3>
             <ul className="mt-10 space-y-5">
               {notIncluded.map((i) => (
-                <li key={i} className="flex gap-4 text-base md:text-lg text-ink-muted/70 items-start">
-                  <Minus className="size-6 text-ink/20 shrink-0" />{i}
+                <li
+                  key={i}
+                  className="flex gap-4 text-base md:text-lg text-ink-muted/70 items-start"
+                >
+                  <Minus className="size-6 text-ink/20 shrink-0" />
+                  {i}
                 </li>
               ))}
             </ul>
@@ -223,11 +294,18 @@ function CateringPage() {
           <SectionHeader eyebrow="Our Offerings" title="Explore the menu." align="center" />
           {isLoading ? (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-              {Array.from({ length: 3 }).map((_, i) => <div key={i} className="rounded-2xl bg-white border border-border shadow-soft animate-pulse h-80" />)}
+              {Array.from({ length: 3 }).map((_, i) => (
+                <div
+                  key={i}
+                  className="rounded-2xl bg-white border border-border shadow-soft animate-pulse h-80"
+                />
+              ))}
             </div>
           ) : items.length > 0 ? (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-              {items.map((p) => <ProductCard key={p.id} product={p} />)}
+              {items.map((p) => (
+                <ProductCard key={p.id} product={p} />
+              ))}
             </div>
           ) : (
             <p className="text-center text-ink-muted py-12 mt-12">More menu options coming soon!</p>
@@ -240,39 +318,94 @@ function CateringPage() {
         <div className="container-luxe max-w-4xl">
           <div className="text-center mb-16">
             <p className="eyebrow !text-gold mb-4">Concierge Booking</p>
-            <h2 className="font-display text-4xl md:text-6xl text-cream">Enquire for your event.</h2>
+            <h2 className="font-display text-4xl md:text-6xl text-cream">
+              Enquire for your event.
+            </h2>
           </div>
-          <form onSubmit={onSubmit} className="bg-cocoa/40 backdrop-blur-md rounded-[2.5rem] p-8 md:p-14 border border-white/10 shadow-2xl relative overflow-hidden">
+          <form
+            onSubmit={onSubmit}
+            className="bg-cocoa/40 backdrop-blur-md rounded-[2.5rem] p-8 md:p-14 border border-white/10 shadow-2xl relative overflow-hidden"
+          >
             <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
             <div className="grid md:grid-cols-2 gap-6 md:gap-8">
               <Field label="Event Type">
-                <select value={form.eventType} onChange={(e) => update("eventType", e.target.value)} className="luxe-input">
-                  {["Corporate Lunch", "House Party", "Brand Event", "Wedding / Celebration", "Other"].map((o) => (
-                    <option key={o} className="bg-cocoa">{o}</option>
+                <select
+                  value={form.eventType}
+                  onChange={(e) => update("eventType", e.target.value)}
+                  className="luxe-input"
+                >
+                  {[
+                    "Corporate Lunch",
+                    "House Party",
+                    "Brand Event",
+                    "Wedding / Celebration",
+                    "Other",
+                  ].map((o) => (
+                    <option key={o} className="bg-cocoa">
+                      {o}
+                    </option>
                   ))}
                 </select>
               </Field>
               <Field label="Number of Guests">
-                <select value={form.guestCount} onChange={(e) => update("guestCount", e.target.value)} className="luxe-input">
-                  {["15-30 guests", "30-50 guests", "50-100 guests", "100+ guests"].map((o) => <option key={o} className="bg-cocoa">{o}</option>)}
+                <select
+                  value={form.guestCount}
+                  onChange={(e) => update("guestCount", e.target.value)}
+                  className="luxe-input"
+                >
+                  {["15-30 guests", "30-50 guests", "50-100 guests", "100+ guests"].map((o) => (
+                    <option key={o} className="bg-cocoa">
+                      {o}
+                    </option>
+                  ))}
                 </select>
               </Field>
               <Field label="Dietary Requirements">
-                <select value={form.diet} onChange={(e) => update("diet", e.target.value)} className="luxe-input">
-                  {["Mixed (Veg & Non-Veg)", "All Vegetarian", "All Vegan", "Gluten-Free Options Required"].map((o) => <option key={o} className="bg-cocoa">{o}</option>)}
+                <select
+                  value={form.diet}
+                  onChange={(e) => update("diet", e.target.value)}
+                  className="luxe-input"
+                >
+                  {[
+                    "Mixed (Veg & Non-Veg)",
+                    "All Vegetarian",
+                    "All Vegan",
+                    "Gluten-Free Options Required",
+                  ].map((o) => (
+                    <option key={o} className="bg-cocoa">
+                      {o}
+                    </option>
+                  ))}
                 </select>
               </Field>
               <Field label="Event Date">
-                <input type="date" value={form.date} onChange={(e) => update("date", e.target.value)} className="luxe-input" required />
+                <input
+                  type="date"
+                  value={form.date}
+                  onChange={(e) => update("date", e.target.value)}
+                  className="luxe-input"
+                  required
+                />
               </Field>
               <Field label="Additional Notes" full>
-                <textarea rows={4} value={form.notes} onChange={(e) => update("notes", e.target.value)} className="luxe-input" placeholder="Tell us more about your event theme, specific cravings, or location..." />
+                <textarea
+                  rows={4}
+                  value={form.notes}
+                  onChange={(e) => update("notes", e.target.value)}
+                  className="luxe-input"
+                  placeholder="Tell us more about your event theme, specific cravings, or location..."
+                />
               </Field>
               <div className="md:col-span-2 flex flex-col sm:flex-row items-center gap-6 pt-6">
-                <button type="submit" className="w-full sm:w-auto px-10 py-5 bg-gold text-cocoa font-bold uppercase tracking-widest text-xs rounded-full shadow-[0_0_20px_rgba(212,175,55,0.2)] hover:bg-cream transition-all duration-300 hover:-translate-y-1">
+                <button
+                  type="submit"
+                  className="w-full sm:w-auto px-10 py-5 bg-gold text-cocoa font-bold uppercase tracking-widest text-xs rounded-full shadow-[0_0_20px_rgba(212,175,55,0.2)] hover:bg-cream transition-all duration-300 hover:-translate-y-1"
+                >
                   Send Enquiry via WhatsApp
                 </button>
-                <p className="text-xs text-ivory-muted/50 uppercase tracking-widest">We confirm within 24 hours.</p>
+                <p className="text-xs text-ivory-muted/50 uppercase tracking-widest">
+                  We confirm within 24 hours.
+                </p>
               </div>
             </div>
           </form>
@@ -286,8 +419,17 @@ function CateringPage() {
             <SectionHeader eyebrow="Gallery" title="Past Events & Setups." align="center" dark />
             <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4 mt-12">
               {gallery.map((img: any, i: number) => (
-                <button key={i} onClick={() => setActiveImg(img.url)} className="block w-full break-inside-avoid overflow-hidden rounded-2xl shadow-lg border border-white/5 hover:border-gold/30 transition-all duration-500 group">
-                  <img src={img.url} alt={img.caption || "Catering Event"} loading="lazy" className="w-full group-hover:scale-105 transition-transform duration-700" />
+                <button
+                  key={i}
+                  onClick={() => setActiveImg(img.url)}
+                  className="block w-full break-inside-avoid overflow-hidden rounded-2xl shadow-lg border border-white/5 hover:border-gold/30 transition-all duration-500 group"
+                >
+                  <img
+                    src={img.url}
+                    alt={img.caption || "Catering Event"}
+                    loading="lazy"
+                    className="w-full group-hover:scale-105 transition-transform duration-700"
+                  />
                 </button>
               ))}
             </div>
@@ -295,9 +437,9 @@ function CateringPage() {
         </section>
       )}
 
-      <FAQSection 
-        customFaqs={cateringFaqs} 
-        subtitle="Everything you need to know about corporate and event catering from Mezcla. If your question isn't answered below, we're just a message away." 
+      <FAQSection
+        customFaqs={cateringFaqs}
+        subtitle="Everything you need to know about corporate and event catering from Mezcla. If your question isn't answered below, we're just a message away."
       />
 
       <style>{`
@@ -307,19 +449,38 @@ function CateringPage() {
       `}</style>
 
       {activeImg && (
-        <div className="fixed inset-0 z-[60] bg-espresso/95 backdrop-blur-sm grid place-items-center p-6" onClick={() => setActiveImg(null)}>
-          <button className="absolute top-6 right-6 text-cream/50 hover:text-gold p-2 transition-colors"><X className="size-8" /></button>
-          <img src={activeImg} alt="Preview" className="max-h-[88vh] max-w-full rounded-2xl shadow-2xl ring-1 ring-white/10" />
+        <div
+          className="fixed inset-0 z-[60] bg-espresso/95 backdrop-blur-sm grid place-items-center p-6"
+          onClick={() => setActiveImg(null)}
+        >
+          <button className="absolute top-6 right-6 text-cream/50 hover:text-gold p-2 transition-colors">
+            <X className="size-8" />
+          </button>
+          <img
+            src={activeImg}
+            alt="Preview"
+            className="max-h-[88vh] max-w-full rounded-2xl shadow-2xl ring-1 ring-white/10"
+          />
         </div>
       )}
     </>
   );
 }
 
-function Field({ label, full, children }: { label: string; full?: boolean; children: React.ReactNode }) {
+function Field({
+  label,
+  full,
+  children,
+}: {
+  label: string;
+  full?: boolean;
+  children: React.ReactNode;
+}) {
   return (
     <label className={`${full ? "md:col-span-2" : ""} block`}>
-      <span className="text-[0.65rem] font-bold uppercase tracking-widest text-ivory-muted/60 block mb-3 pl-2">{label}</span>
+      <span className="text-[0.65rem] font-bold uppercase tracking-widest text-ivory-muted/60 block mb-3 pl-2">
+        {label}
+      </span>
       {children}
     </label>
   );

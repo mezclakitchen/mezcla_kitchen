@@ -7,7 +7,11 @@ export const Route = createFileRoute("/breads")({
   head: () => ({
     meta: [
       { title: "Artisan Breads in Bangalore | Mezcla" },
-      { name: "description", content: "Slow-fermented sourdough (available every Wednesday), speciality sandwich breads, focaccia, pita, kulcha, baguette and more — freshly baked in small batches in Bangalore." },
+      {
+        name: "description",
+        content:
+          "Slow-fermented sourdough (available every Wednesday), speciality sandwich breads, focaccia, pita, kulcha, baguette and more — freshly baked in small batches in Bangalore.",
+      },
       { property: "og:image", content: breads },
     ],
     links: [{ rel: "canonical", href: "https://mezclakitchen.in/breads" }],
@@ -18,16 +22,19 @@ export const Route = createFileRoute("/breads")({
 function BreadsPage() {
   const { data, isLoading } = usePublicProducts({ limit: 100 });
   const items = (data?.data ?? []).filter((p: any) => {
-    const catObj = p.categories || p.category;
-    const catName = (typeof catObj === 'object' ? catObj?.name : catObj) || '';
-    const catSlug = (typeof catObj === 'object' ? catObj?.slug : p.category_slug) || '';
-    const searchStr = (catName + ' ' + catSlug).toLowerCase();
-    return searchStr.includes("bread");
+    const catSlug = (typeof p.categories === "object" ? p.categories?.slug : p.category_slug) || "";
+    return ["breads", "sourdough-breads", "specialty-breads"].includes(catSlug);
   });
   return (
     <>
       <section className="relative bg-cocoa overflow-hidden">
-        <img src={breads} alt="" className="absolute inset-0 size-full object-cover opacity-40" width={1024} height={1280} />
+        <img
+          src={breads}
+          alt=""
+          className="absolute inset-0 size-full object-cover opacity-40"
+          width={1024}
+          height={1280}
+        />
         <div className="absolute inset-0 bg-gradient-to-r from-cocoa via-cocoa/80 to-cocoa/40" />
         <div className="container-luxe relative py-24 md:py-32 max-w-3xl">
           <p className="eyebrow">Made the slow way</p>
@@ -35,7 +42,9 @@ function BreadsPage() {
             Artisan <span className="italic text-gold">breads</span>.
           </h1>
           <p className="mt-6 text-ivory-muted text-base md:text-lg max-w-xl leading-relaxed">
-            Slow-fermented sourdough, available every Wednesday, and a range of speciality breads — Japanese milk bread, focaccia, pita, kulcha, baguette and more. Every loaf is 100% eggless and baked fresh to order.
+            Slow-fermented sourdough, available every Wednesday, and a range of speciality breads —
+            Japanese milk bread, focaccia, pita, kulcha, baguette and more. Every loaf is 100%
+            eggless and baked fresh to order.
           </p>
         </div>
       </section>
@@ -44,12 +53,17 @@ function BreadsPage() {
           {isLoading ? (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {Array.from({ length: 6 }).map((_, i) => (
-                <div key={i} className="rounded-2xl bg-white border border-border shadow-soft animate-pulse h-80" />
+                <div
+                  key={i}
+                  className="rounded-2xl bg-white border border-border shadow-soft animate-pulse h-80"
+                />
               ))}
             </div>
           ) : items.length > 0 ? (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {items.map((p) => <ProductCard key={p.id} product={p} />)}
+              {items.map((p) => (
+                <ProductCard key={p.id} product={p} />
+              ))}
             </div>
           ) : (
             <p className="text-center text-ink-muted py-12">More breads coming soon!</p>
@@ -59,4 +73,3 @@ function BreadsPage() {
     </>
   );
 }
-

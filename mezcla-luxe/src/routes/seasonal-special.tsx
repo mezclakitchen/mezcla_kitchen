@@ -7,7 +7,11 @@ export const Route = createFileRoute("/seasonal-special")({
   head: () => ({
     meta: [
       { title: "Seasonal Specials in Bangalore | Mezcla" },
-      { name: "description", content: "Limited seasonal creations—handcrafted fresh each season with the finest ingredients. Available for a short time only." },
+      {
+        name: "description",
+        content:
+          "Limited seasonal creations—handcrafted fresh each season with the finest ingredients. Available for a short time only.",
+      },
       { property: "og:image", content: bakes },
     ],
     links: [{ rel: "canonical", href: "https://mezclakitchen.in/seasonal-special" }],
@@ -21,7 +25,13 @@ function SeasonalSpecialPage() {
   return (
     <>
       <section className="relative bg-cocoa overflow-hidden">
-        <img src={bakes} alt="" className="absolute inset-0 size-full object-cover opacity-40" width={1024} height={1280} />
+        <img
+          src={bakes}
+          alt=""
+          className="absolute inset-0 size-full object-cover opacity-40"
+          width={1024}
+          height={1280}
+        />
         <div className="absolute inset-0 bg-gradient-to-r from-cocoa via-cocoa/80 to-cocoa/40" />
         <div className="container-luxe relative py-24 md:py-32 max-w-3xl">
           <p className="eyebrow">Limited Edition</p>
@@ -29,7 +39,8 @@ function SeasonalSpecialPage() {
             Seasonal <span className="italic text-gold">Specials</span>.
           </h1>
           <p className="mt-6 text-ivory-muted text-base md:text-lg max-w-xl leading-relaxed">
-            Limited seasonal creations—handcrafted fresh each season with the finest ingredients. Available for a short time only, so don't miss out.
+            Limited seasonal creations—handcrafted fresh each season with the finest ingredients.
+            Available for a short time only, so don't miss out.
           </p>
         </div>
       </section>
@@ -38,15 +49,22 @@ function SeasonalSpecialPage() {
           {isLoading ? (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {Array.from({ length: 6 }).map((_, i) => (
-                <div key={i} className="rounded-2xl bg-white border border-border shadow-soft animate-pulse h-80" />
+                <div
+                  key={i}
+                  className="rounded-2xl bg-white border border-border shadow-soft animate-pulse h-80"
+                />
               ))}
             </div>
           ) : items.length > 0 ? (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {items.map((p) => <ProductCard key={p.id} product={p} />)}
+              {items.map((p) => (
+                <ProductCard key={p.id} product={p} />
+              ))}
             </div>
           ) : (
-            <p className="text-center text-ink-muted py-12">New seasonal specials coming soon—check back shortly!</p>
+            <p className="text-center text-ink-muted py-12">
+              New seasonal specials coming soon—check back shortly!
+            </p>
           )}
         </div>
       </section>

@@ -4,6 +4,7 @@ import { requireAdmin } from '../../middleware/auth.js';
 import { adminRateLimiter } from '../../middleware/rateLimiter.js';
 import { adminSupabase } from '../../lib/supabase.js';
 import { uploadImage, deleteImageByUrl } from '../../lib/imageUpload.js';
+import sharp from 'sharp';
 import { validate, UpdateGalleryItemSchema } from '../../lib/schemas.js';
 
 const router = Router();
@@ -37,6 +38,26 @@ router.patch('/:id', async (req, res, next) => {
   try {
     const body = validate(UpdateGalleryItemSchema, req.body);
     const { data, error } = await adminSupabase.from('gallery').update(body).eq('id', req.params.id).select().single();
+    if (error) throw error;
+    res.json({ data });
+  } catch (err) { next(err); }
+});
+
+router.post('/:id/rotate', async (req, res, next) => {
+  try {
+    const { data: item } = await adminSupabase.from('gallery').select('*').eq('id', req.params.id).single();
+    if (!item) throw new Error('Not found');
+
+    const response = await fetch(item.url);
+    if (!response.ok) throw new Error('Failed to fetch image for rotation');
+    
+    const arrayBuffer = await response.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
+    
+    const rotatedBuffer = await sharp(buffer).rotate(90).toBuffer();
+    const { url } = await uploadImage(rotatedBuffer, 'gallery', item.url);
+
+    const { data, error } = await adminSupabase.from('gallery').update({ url }).eq('id', item.id).select().single();
     if (error) throw error;
     res.json({ data });
   } catch (err) { next(err); }

@@ -22,16 +22,19 @@ export const Route = createFileRoute("/sourdough-breads")({
 function SourdoughBreadsPage() {
   const { data, isLoading } = usePublicProducts({ limit: 100 });
   const items = (data?.data ?? []).filter((p: any) => {
-    const catObj = p.categories || p.category;
-    const catName = (typeof catObj === 'object' ? catObj?.name : catObj) || '';
-    const catSlug = (typeof catObj === 'object' ? catObj?.slug : p.category_slug) || '';
-    const searchStr = (catName + ' ' + catSlug).toLowerCase();
-    return searchStr.includes("sourdough");
+    const catSlug = (typeof p.categories === "object" ? p.categories?.slug : p.category_slug) || "";
+    return catSlug === "sourdough-breads";
   });
   return (
     <>
       <section className="relative bg-cocoa overflow-hidden">
-        <img src={breads} alt="" className="absolute inset-0 size-full object-cover opacity-40" width={1024} height={1280} />
+        <img
+          src={breads}
+          alt=""
+          className="absolute inset-0 size-full object-cover opacity-40"
+          width={1024}
+          height={1280}
+        />
         <div className="absolute inset-0 bg-gradient-to-r from-cocoa via-cocoa/80 to-cocoa/40" />
         <div className="container-luxe relative py-24 md:py-32 max-w-3xl">
           <p className="eyebrow">Available every Wednesday</p>
@@ -39,7 +42,8 @@ function SourdoughBreadsPage() {
             Sourdough <span className="italic text-gold">Breads</span>.
           </h1>
           <p className="mt-6 text-ivory-muted text-base md:text-lg max-w-xl leading-relaxed">
-            Long-fermented, slow-crafted sourdough loaves available in Maida and Whole Wheat. Baked fresh every Wednesday — orders must be placed by Monday.
+            Long-fermented, slow-crafted sourdough loaves available in Maida and Whole Wheat. Baked
+            fresh every Wednesday — orders must be placed by Monday.
           </p>
         </div>
       </section>
@@ -48,15 +52,22 @@ function SourdoughBreadsPage() {
           {isLoading ? (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {Array.from({ length: 6 }).map((_, i) => (
-                <div key={i} className="rounded-2xl bg-white border border-border shadow-soft animate-pulse h-80" />
+                <div
+                  key={i}
+                  className="rounded-2xl bg-white border border-border shadow-soft animate-pulse h-80"
+                />
               ))}
             </div>
           ) : items.length > 0 ? (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {items.map((p) => <ProductCard key={p.id} product={p} />)}
+              {items.map((p) => (
+                <ProductCard key={p.id} product={p} />
+              ))}
             </div>
           ) : (
-            <p className="text-center text-ink-muted py-12">Sourdough loaves coming soon — order by Monday for Wednesday bake!</p>
+            <p className="text-center text-ink-muted py-12">
+              Sourdough loaves coming soon — order by Monday for Wednesday bake!
+            </p>
           )}
         </div>
       </section>

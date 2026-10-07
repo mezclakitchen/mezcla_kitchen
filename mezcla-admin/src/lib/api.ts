@@ -177,6 +177,8 @@ export const galleryApi = {
   },
   update: (id: string, body: any) =>
     request<any>(`/api/admin/gallery/${id}`, { method: "PUT", body: JSON.stringify(body) }),
+  rotate: (id: string) =>
+    request<any>(`/api/admin/gallery/${id}/rotate`, { method: "POST" }),
   delete: (id: string) =>
     request<any>(`/api/admin/gallery/${id}`, { method: "DELETE" }),
 };

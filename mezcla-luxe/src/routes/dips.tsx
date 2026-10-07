@@ -7,7 +7,11 @@ export const Route = createFileRoute("/dips")({
   head: () => ({
     meta: [
       { title: "Fresh Hummus, Muhammara & Mezze Dips in Bangalore | Mezcla" },
-      { name: "description", content: "Small-batch hummus, muhammara and seasonal mezze dips — jarred fresh, delivered in Bangalore." },
+      {
+        name: "description",
+        content:
+          "Small-batch hummus, muhammara and seasonal mezze dips — jarred fresh, delivered in Bangalore.",
+      },
       { property: "og:image", content: dips },
     ],
     links: [{ rel: "canonical", href: "https://mezclakitchen.in/dips" }],
@@ -18,16 +22,19 @@ export const Route = createFileRoute("/dips")({
 function DipsPage() {
   const { data, isLoading } = usePublicProducts({ limit: 100 });
   const items = (data?.data ?? []).filter((p: any) => {
-    const catObj = p.categories || p.category;
-    const catName = (typeof catObj === 'object' ? catObj?.name : catObj) || '';
-    const catSlug = (typeof catObj === 'object' ? catObj?.slug : p.category_slug) || '';
-    const searchStr = (catName + ' ' + catSlug).toLowerCase();
-    return searchStr.includes("dip");
+    const catSlug = (typeof p.categories === "object" ? p.categories?.slug : p.category_slug) || "";
+    return catSlug === "dips";
   });
   return (
     <>
       <section className="relative bg-cocoa overflow-hidden">
-        <img src={dips} alt="" className="absolute inset-0 size-full object-cover opacity-40" width={1024} height={1280} />
+        <img
+          src={dips}
+          alt=""
+          className="absolute inset-0 size-full object-cover opacity-40"
+          width={1024}
+          height={1280}
+        />
         <div className="absolute inset-0 bg-gradient-to-r from-cocoa via-cocoa/80 to-cocoa/40" />
         <div className="container-luxe relative py-24 md:py-32 max-w-3xl">
           <p className="eyebrow">Freshly jarred · EVOO only</p>
@@ -35,7 +42,9 @@ function DipsPage() {
             Dips &amp; <span className="italic text-gold">mezze</span>.
           </h1>
           <p className="mt-6 text-ivory-muted text-base md:text-lg max-w-xl leading-relaxed">
-            Freshly prepared in small batches using only Extra Virgin Olive Oil. Hummus, muhammara, Italian basil pesto, tzatziki, labneh and onion balsamic jam — perfect for grazing boards, sandwiches, pastas or warm bread.
+            Freshly prepared in small batches using only Extra Virgin Olive Oil. Hummus, muhammara,
+            Italian basil pesto, tzatziki, labneh and onion balsamic jam — perfect for grazing
+            boards, sandwiches, pastas or warm bread.
           </p>
         </div>
       </section>
@@ -44,12 +53,17 @@ function DipsPage() {
           {isLoading ? (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {Array.from({ length: 6 }).map((_, i) => (
-                <div key={i} className="rounded-2xl bg-white border border-border shadow-soft animate-pulse h-80" />
+                <div
+                  key={i}
+                  className="rounded-2xl bg-white border border-border shadow-soft animate-pulse h-80"
+                />
               ))}
             </div>
           ) : items.length > 0 ? (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {items.map((p) => <ProductCard key={p.id} product={p} />)}
+              {items.map((p) => (
+                <ProductCard key={p.id} product={p} />
+              ))}
             </div>
           ) : (
             <p className="text-center text-ink-muted py-12">More dips coming soon!</p>

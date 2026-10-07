@@ -17,7 +17,11 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Mezcla — Artisanal Cakes, Hampers & Grazing Tables" },
-      { name: "description", content: "Handcrafted food experiences for birthdays, weddings, festive gifting and intimate celebrations. Made fresh, customisable, delivered with care." },
+      {
+        name: "description",
+        content:
+          "Handcrafted food experiences for birthdays, weddings, festive gifting and intimate celebrations. Made fresh, customisable, delivered with care.",
+      },
     ],
   }),
   component: Home,

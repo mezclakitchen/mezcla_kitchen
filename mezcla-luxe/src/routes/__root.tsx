@@ -18,7 +18,9 @@ function NotFoundComponent() {
         <h1 className="mt-4 font-display text-5xl text-cream">Page not found</h1>
         <p className="mt-4 text-ivory-muted">The page you're looking for doesn't exist.</p>
         <div className="mt-8">
-          <Link to="/" className="btn-gold">Return Home</Link>
+          <Link to="/" className="btn-gold">
+            Return Home
+          </Link>
         </div>
       </div>
     </div>
@@ -34,8 +36,18 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
         <h1 className="font-display text-3xl text-cream">Something went wrong</h1>
         <p className="mt-3 text-ivory-muted text-sm">{error.message}</p>
         <div className="mt-6 flex justify-center gap-3">
-          <button onClick={() => { router.invalidate(); reset(); }} className="btn-gold">Try again</button>
-          <a href="/" className="btn-ghost-gold">Home</a>
+          <button
+            onClick={() => {
+              router.invalidate();
+              reset();
+            }}
+            className="btn-gold"
+          >
+            Try again
+          </button>
+          <a href="/" className="btn-ghost-gold">
+            Home
+          </a>
         </div>
       </div>
     </div>
@@ -48,11 +60,23 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Mezcla — Artisan Sourdough, Hampers & Grazing Tables in Bangalore" },
-      { name: "description", content: "Mezcla is a Bangalore home kitchen crafting sourdough breads, fresh mezze, snack boxes, hampers and grazing tables for birthdays, parties and festive gifting." },
+      {
+        name: "description",
+        content:
+          "Mezcla is a Bangalore commercial cloud kitchen crafting sourdough breads, fresh mezze, snack boxes, hampers and grazing tables for birthdays, parties and festive gifting.",
+      },
       { name: "author", content: "Mezcla" },
-      { name: "keywords", content: "grazing tables Bangalore, artisan hampers Bangalore, sourdough Bangalore, snack boxes, festive hampers, corporate gifting Bangalore" },
+      {
+        name: "keywords",
+        content:
+          "grazing tables Bangalore, artisan hampers Bangalore, sourdough Bangalore, snack boxes, festive hampers, corporate gifting Bangalore",
+      },
       { property: "og:title", content: "Mezcla — The Artisanal Kitchen, Bangalore" },
-      { property: "og:description", content: "Sourdough, mezze, snack boxes, hampers and grazing tables — handcrafted in Bangalore." },
+      {
+        property: "og:description",
+        content:
+          "Sourdough, mezze, snack boxes, hampers and grazing tables — handcrafted in Bangalore.",
+      },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Mezcla" },
       { property: "og:locale", content: "en_IN" },
@@ -65,7 +89,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap",
+      },
     ],
     scripts: [
       {
@@ -99,7 +126,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           name: "Mezcla — The Artisanal Kitchen",
           alternateName: ["Mezcla Kitchen", "Mezcla Artisanal Kitchen"],
           description:
-            "Bangalore home kitchen crafting sourdough breads, fresh mezze, snack boxes, gourmet hampers and grazing tables. Handmade in small batches with honest ingredients.",
+            "Bangalore commercial cloud kitchen crafting sourdough breads, fresh mezze, snack boxes, gourmet hampers and grazing tables. Handmade in small batches with honest ingredients.",
           url: "https://mezclakitchen.in",
           logo: "https://mezclakitchen.in/assets/brand/mezcla-logo.png",
           image: "https://mezclakitchen.in/og-cover.jpg",
@@ -116,7 +143,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           currenciesAccepted: "INR",
           paymentAccepted: "UPI, Bank Transfer, Cash on Delivery",
           areaServed: [
-            { "@type": "City", name: "Bangalore", sameAs: "https://en.wikipedia.org/wiki/Bangalore" },
+            {
+              "@type": "City",
+              name: "Bangalore",
+              sameAs: "https://en.wikipedia.org/wiki/Bangalore",
+            },
             { "@type": "Neighborhood", name: "Koramangala, Bangalore" },
             { "@type": "Neighborhood", name: "Indiranagar, Bangalore" },
             { "@type": "Neighborhood", name: "Sadashivanagar, Bangalore" },
@@ -145,8 +176,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           ],
           sameAs: [
             "https://www.instagram.com/mezclakitchen.in/",
-            "https://share.google/AgGzGJiXjaGZBic2L"
-          ]
+            "https://share.google/AgGzGJiXjaGZBic2L",
+          ],
         }),
       },
     ],

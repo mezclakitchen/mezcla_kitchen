@@ -10,8 +10,12 @@ import { Leaf, Clock, Heart, Shield, ArrowRight } from "lucide-react";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About Mezcla — A Home Kitchen in Bangalore" },
-      { name: "description", content: "Mezcla is a small Bangalore home kitchen baking sourdough, jarring fresh mezze and curating hampers and grazing tables for the people you love." },
+      { title: "About Mezcla — A Commercial Cloud Kitchen in Bangalore" },
+      {
+        name: "description",
+        content:
+          "Mezcla is a commercial cloud kitchen in Bangalore baking sourdough, jarring fresh mezze and curating hampers and grazing tables for the people you love.",
+      },
     ],
     links: [{ rel: "canonical", href: "https://mezclakitchen.in/about" }],
   }),
@@ -33,7 +37,7 @@ function AboutPage() {
           {/* Left: dark gradient to blend text */}
           <div className="hidden lg:block bg-gradient-to-r from-espresso via-espresso/95 to-transparent z-10" />
           <div className="absolute inset-0 bg-espresso/80 lg:hidden z-10" />
-          
+
           {/* Right: Image */}
           <div className="absolute inset-0 lg:left-[40%]">
             <img
@@ -52,21 +56,28 @@ function AboutPage() {
               <Heart className="size-3" />
               Our Story
             </div>
-            
+
             <h1 className="font-display text-5xl md:text-7xl lg:text-[5.5rem] text-cream leading-[1.05] tracking-tight">
               A kitchen built <br />
               <span className="italic text-gold font-light">on intention.</span>
             </h1>
-            
+
             <p className="mt-8 text-ivory-muted/90 text-lg md:text-xl max-w-xl leading-relaxed font-light">
-              <em>Mezcla</em> means a mindful blend. Every loaf, every jar and every hamper begins with a small idea: that food, made with care, can hold a memory.
+              <em>Mezcla</em> means a mindful blend. Every loaf, every jar and every hamper begins
+              with a small idea: that food, made with care, can hold a memory.
             </p>
-            
+
             <div className="mt-12 flex flex-wrap gap-4">
-              <a href="#founder" className="px-8 py-4 bg-gold text-cocoa font-bold uppercase tracking-widest text-xs rounded-full shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:bg-cream transition-all duration-300 hover:-translate-y-1">
+              <a
+                href="#founder"
+                className="px-8 py-4 bg-gold text-cocoa font-bold uppercase tracking-widest text-xs rounded-full shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:bg-cream transition-all duration-300 hover:-translate-y-1"
+              >
                 Read Our Story
               </a>
-              <Link to="/contact" className="px-8 py-4 border border-white/20 text-cream hover:border-gold hover:text-gold font-bold uppercase tracking-widest text-xs rounded-full backdrop-blur-sm transition-all duration-300 hover:-translate-y-1">
+              <Link
+                to="/contact"
+                className="px-8 py-4 border border-white/20 text-cream hover:border-gold hover:text-gold font-bold uppercase tracking-widest text-xs rounded-full backdrop-blur-sm transition-all duration-300 hover:-translate-y-1"
+              >
                 Say Hello
               </Link>
             </div>
@@ -76,7 +87,6 @@ function AboutPage() {
 
       {/* ═══ FOUNDER SECTION ═══ */}
       <section id="founder" className="bg-cocoa relative overflow-hidden border-b border-white/5">
-
         {/* Large background quote watermark */}
         <div className="absolute top-1/2 -translate-y-1/2 right-0 opacity-[0.03] pointer-events-none select-none pr-8">
           <span className="font-display text-[28rem] leading-none text-gold">"</span>
@@ -86,7 +96,9 @@ function AboutPage() {
         <div className="container-luxe pt-24 md:pt-32 pb-0 relative z-10">
           <div className="flex items-center justify-center gap-4">
             <div className="h-px w-12 bg-gold/30" />
-            <p className="text-gold text-[0.65rem] font-bold uppercase tracking-[0.35em]">Meet the Founder</p>
+            <p className="text-gold text-[0.65rem] font-bold uppercase tracking-[0.35em]">
+              Meet the Founder
+            </p>
             <div className="h-px w-12 bg-gold/30" />
           </div>
         </div>
@@ -94,7 +106,6 @@ function AboutPage() {
         {/* ── MAIN GRID ── */}
         <div className="container-luxe max-w-7xl relative z-10 mt-12 pb-24 md:pb-36">
           <div className="grid lg:grid-cols-[1fr_1.15fr] gap-0 lg:gap-16 items-center">
-
             {/* ── LEFT: Photo ── */}
             <div className="relative flex justify-center lg:justify-start mb-12 lg:mb-0">
               {/* Subtle glow */}
@@ -117,7 +128,9 @@ function AboutPage() {
                   <p className="font-display text-2xl text-cream leading-tight">Monali Shah</p>
                   <div className="flex items-center justify-center gap-3 mt-1.5">
                     <div className="h-px w-6 bg-gold/60" />
-                    <p className="text-gold text-[0.65rem] font-semibold uppercase tracking-[0.25em]">Founder · Mezcla Kitchen</p>
+                    <p className="text-gold text-[0.65rem] font-semibold uppercase tracking-[0.25em]">
+                      Founder . Mezcla - The Artisanal Kitchen
+                    </p>
                     <div className="h-px w-6 bg-gold/60" />
                   </div>
                 </div>
@@ -126,7 +139,6 @@ function AboutPage() {
 
             {/* ── RIGHT: Story ── */}
             <div className="flex flex-col justify-center">
-
               {/* Headline */}
               <h2 className="font-display text-4xl md:text-5xl lg:text-[3.25rem] text-cream leading-[1.08] tracking-tight mb-10">
                 The story behind <br className="hidden lg:block" />
@@ -136,19 +148,31 @@ function AboutPage() {
               {/* Story paragraphs */}
               <div className="space-y-6 text-ivory-muted/85 leading-[1.85] text-base md:text-[1.05rem] font-light">
                 <p>
-                  Mezcla was founded by <span className="text-cream font-medium">Monali Shah</span>, who believes good food has the power to bring people together and create memories worth keeping.
+                  Mezcla was founded by <span className="text-cream font-medium">Monali Shah</span>,
+                  who believes good food has the power to bring people together and create memories
+                  worth keeping.
                 </p>
                 <p>
-                  After years in [corporate role/industry], Monali found herself pulled toward the creativity and connection that food brings into people's lives. What began as a love of hosting and experimenting with flavours grew into Mezcla, a kitchen built around honest food and thoughtfully curated gatherings.
+                  After years in Finance, Monali found herself pulled toward the creativity and
+                  connection that food brings into people's lives. What began as a love of hosting
+                  and experimenting with flavours grew into Mezcla, a kitchen built around honest
+                  food and thoughtfully curated gatherings.
                 </p>
                 <p>
-                  Mezcla is a vegetarian kitchen by conviction, not convenience. Monali comes from a Jain family where a vegetarian way of life runs deep, and that value shaped Mezcla from day one: a 100% eggless, vegetarian kitchen, so every loaf, cake and spread can be shared without question, whatever the guest list looks like.
+                  Mezcla is a vegetarian kitchen by conviction, not convenience. Monali comes from a
+                  Jain family where a vegetarian way of life runs deep, and that value shaped Mezcla
+                  from day one: a 100% eggless, vegetarian kitchen, so every loaf, cake and spread
+                  can be shared without question, whatever the guest list looks like.
                 </p>
                 <p>
-                  Today, Monali combines her business background with her love for food to create experiences that feel personal and effortless. From sourdough and desserts to grazing tables, catering and custom hampers, every Mezcla offering is made in small batches and rooted in genuine hospitality.
+                  Today, Monali combines her business background with her love for food to create
+                  experiences that feel personal and effortless. From sourdough and desserts to
+                  grazing tables, catering and custom hampers, every Mezcla offering is made in
+                  small batches and rooted in genuine hospitality.
                 </p>
                 <p>
-                  For Monali, Mezcla is about more than food. It's about celebrating milestones, building connections, and creating moments worth remembering.
+                  For Monali, Mezcla is about more than food. It's about celebrating milestones,
+                  building connections, and creating moments worth remembering.
                 </p>
               </div>
 
@@ -157,7 +181,9 @@ function AboutPage() {
                 <p className="font-display text-xl md:text-2xl text-gold italic leading-snug">
                   "Thank you for letting my kitchen be a part of your celebrations."
                 </p>
-                <p className="mt-3 text-ivory-muted/50 text-xs uppercase tracking-[0.25em] font-medium">— Monali Shah</p>
+                <p className="mt-3 text-ivory-muted/50 text-xs uppercase tracking-[0.25em] font-medium">
+                  — Monali Shah
+                </p>
               </div>
 
               {/* CTA */}
@@ -170,26 +196,28 @@ function AboutPage() {
                 </Link>
               </div>
             </div>
-
           </div>
         </div>
       </section>
-
 
       {/* Core Values (Bento Grid) */}
       <section className="bg-cream text-ink py-24 md:py-32">
         <div className="container-luxe">
           <SectionHeader eyebrow="WHY MEZCLA" title="We don't do shortcuts." align="center" />
-          
+
           <div className="grid md:grid-cols-3 gap-6 mt-16">
             <div className="md:col-span-2 p-6 sm:p-8 md:p-14 rounded-3xl md:rounded-[2.5rem] bg-white border border-border hover:border-gold/30 hover:shadow-xl transition-all duration-500 group relative overflow-hidden">
               <div className="relative z-10">
                 <div className="size-12 rounded-full bg-gold/10 flex items-center justify-center mb-8 border border-gold/20">
                   <Clock className="size-5 text-gold-deep" strokeWidth={1.5} />
                 </div>
-                <h3 className="font-display text-2xl lg:text-3xl text-ink leading-snug">Slow Methods</h3>
+                <h3 className="font-display text-2xl lg:text-3xl text-ink leading-snug">
+                  Slow Methods
+                </h3>
                 <p className="mt-4 text-ink-muted leading-relaxed max-w-md">
-                  Long fermentation, considered recipes, and a kitchen that's 100% eggless and vegetarian by conviction, not convenience. Good things take time, which is why everything is prepared fresh to order, in small batches.
+                  Long fermentation, considered recipes, and a kitchen that's 100% eggless and
+                  vegetarian by conviction, not convenience. Good things take time, which is why
+                  everything is prepared fresh to order, in small batches.
                 </p>
               </div>
             </div>
@@ -200,7 +228,8 @@ function AboutPage() {
               </div>
               <h3 className="font-display text-xl text-ink">Honest Ingredients</h3>
               <p className="mt-3 text-ink-muted text-sm leading-relaxed">
-                Real butter, real couverture chocolate, real fruit. We never use preservatives, food colouring or shortcuts, on any product, for any order.
+                Real butter, real couverture chocolate, real fruit. We never use preservatives, food
+                colouring or shortcuts, on any product, for any order.
               </p>
             </div>
 
@@ -210,16 +239,23 @@ function AboutPage() {
               </div>
               <h3 className="font-display text-xl text-ink">FSSAI Certified</h3>
               <p className="mt-3 text-ink-muted text-sm leading-relaxed">
-                21225193002235. We maintain strict hygiene, sourcing and packaging standards in our kitchen.
+                21225193002235. We maintain strict hygiene, sourcing and packaging standards in our
+                kitchen.
               </p>
             </div>
 
             <div className="md:col-span-2 p-6 sm:p-8 md:p-14 rounded-3xl md:rounded-[2.5rem] bg-ink border border-ink hover:border-gold-deep/50 transition-all duration-500 flex flex-col justify-center items-start text-cream">
               <h3 className="font-display text-2xl lg:text-3xl">Personal Service</h3>
               <p className="mt-4 text-ivory-muted/80 leading-relaxed max-w-md">
-                Every order is handled by a real person. We don't automate our care. We deliver when promised, across Bangalore, because we know these moments can't wait.
+                Every order is handled by a real person. We don't automate our care. We deliver when
+                promised, across Bangalore, because we know these moments can't wait.
               </p>
-              <a href={generateWhatsAppLink(waMessages.menu)} target="_blank" rel="noreferrer" className="mt-8 px-8 py-4 bg-gold-deep text-white font-bold uppercase tracking-widest text-xs rounded-full shadow-[0_0_20px_rgba(184,134,11,0.2)] hover:bg-white hover:text-ink transition-all duration-300 hover:-translate-y-1">
+              <a
+                href={generateWhatsAppLink(waMessages.menu)}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-8 px-8 py-4 bg-gold-deep text-white font-bold uppercase tracking-widest text-xs rounded-full shadow-[0_0_20px_rgba(184,134,11,0.2)] hover:bg-white hover:text-ink transition-all duration-300 hover:-translate-y-1"
+              >
                 Say Hello on WhatsApp
               </a>
             </div>
@@ -233,7 +269,7 @@ function AboutPage() {
           <p className="eyebrow !text-gold mb-4">Taste the intention</p>
           <h2 className="font-display text-4xl md:text-5xl text-cream">Ready to order?</h2>
           <p className="mt-6 text-ivory-muted text-lg leading-relaxed">
-            Browse our menu for fresh bakes, mezze jars, and curated gifts. We bake fresh every morning.
+            Browse our menu for fresh bakes, mezze jars, and curated gifts.
           </p>
           <a
             href={generateWhatsAppLink(waMessages.menu)}

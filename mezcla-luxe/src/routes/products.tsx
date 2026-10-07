@@ -20,7 +20,11 @@ export const Route = createFileRoute("/products")({
           "sourdough bread Bangalore, speciality bread Bangalore, hummus Bangalore, pesto Bangalore, Korean cream cheese buns Bangalore, quiche Bangalore, celebration cake Bangalore, artisan bakery Bangalore, fresh dips Bangalore",
       },
       { property: "og:title", content: "Mezcla Menu — Artisan Breads, Dips & Bakes, Bangalore" },
-      { property: "og:description", content: "Sourdough (Wed bake), speciality breads, mezze dips, artisan bakes and celebration cakes — handcrafted in Bangalore. Order on WhatsApp." },
+      {
+        property: "og:description",
+        content:
+          "Sourdough (Wed bake), speciality breads, mezze dips, artisan bakes and celebration cakes — handcrafted in Bangalore. Order on WhatsApp.",
+      },
     ],
     links: [{ rel: "canonical", href: "https://mezclakitchen.in/products" }],
     scripts: [
@@ -29,16 +33,17 @@ export const Route = createFileRoute("/products")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "ItemList",
-          "name": "Mezcla Menu",
-          "description": "Sourdough breads, speciality breads, handcrafted dips & mezze, artisan bakes & desserts, and celebration cakes.",
-          "url": "https://mezclakitchen.in/products",
-          "itemListElement": [
-              { "@type": "ListItem", "position": 1, "name": "Sourdough Bread" },
-              { "@type": "ListItem", "position": 2, "name": "Speciality Bread" },
-              { "@type": "ListItem", "position": 3, "name": "Other Bakes & Desserts" },
-              { "@type": "ListItem", "position": 4, "name": "Handcrafted Dips & Mezze" },
-              { "@type": "ListItem", "position": 5, "name": "Cakes" }
-            ]
+          name: "Mezcla Menu",
+          description:
+            "Sourdough breads, speciality breads, handcrafted dips & mezze, artisan bakes & desserts, and celebration cakes.",
+          url: "https://mezclakitchen.in/products",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Sourdough Bread" },
+            { "@type": "ListItem", position: 2, name: "Speciality Bread" },
+            { "@type": "ListItem", position: 3, name: "Other Bakes & Desserts" },
+            { "@type": "ListItem", position: 4, name: "Handcrafted Dips & Mezze" },
+            { "@type": "ListItem", position: 5, name: "Cakes" },
+          ],
         }),
       },
     ],
@@ -52,15 +57,15 @@ function ProductsPage() {
 
   const { data: catData } = usePublicCategories();
   const { data: prodData, isLoading } = usePublicProducts(
-    active === "all" ? { limit: 100 } : { category: active, limit: 100 }
+    active === "all" ? { limit: 100 } : { category: active, limit: 100 },
   );
 
-  const categories = (catData?.data ?? []).filter((c: any) => 
-    !["hampers", "grazing-tables", "catering"].includes(c.slug)
+  const categories = (catData?.data ?? []).filter(
+    (c: any) => !["hampers", "grazing-tables", "catering"].includes(c.slug),
   );
   const filters = [
     { label: "All", slug: "all" },
-    ...categories.map((c: any) => ({ label: c.name, slug: c.slug }))
+    ...categories.map((c: any) => ({ label: c.name, slug: c.slug })),
   ];
 
   const visible: any[] = prodData?.data ?? [];
@@ -74,7 +79,9 @@ function ProductsPage() {
             What we're <span className="italic text-gold">making</span> this week.
           </h1>
           <p className="mt-5 text-ivory-muted text-base md:text-lg leading-relaxed">
-            Sourdough breads, speciality loaves, handcrafted dips, artisan bakes and celebration cakes — made fresh in our Bangalore kitchen. Sourdough available every Wednesday; order by Monday.
+            Sourdough breads, speciality loaves, handcrafted dips, artisan bakes and celebration
+            cakes — made fresh in our Bangalore kitchen. Sourdough available every Wednesday; order
+            by Monday.
           </p>
         </div>
       </section>
@@ -110,7 +117,10 @@ function ProductsPage() {
           {isLoading ? (
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {Array.from({ length: 8 }).map((_, i) => (
-                <div key={i} className="rounded-2xl bg-white border border-border shadow-soft animate-pulse h-80" />
+                <div
+                  key={i}
+                  className="rounded-2xl bg-white border border-border shadow-soft animate-pulse h-80"
+                />
               ))}
             </div>
           ) : (
@@ -123,7 +133,8 @@ function ProductsPage() {
 
               {visible.length === 0 && (
                 <p className="text-center text-ink-muted py-16">
-                  Nothing in this category yet — drop us a WhatsApp, we may have it on our weekly bake.
+                  Nothing in this category yet — drop us a WhatsApp, we may have it on our weekly
+                  bake.
                 </p>
               )}
             </>

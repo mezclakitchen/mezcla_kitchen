@@ -24,16 +24,19 @@ function CakesPage() {
   const { generateWhatsAppLink } = useWhatsApp();
   const { data, isLoading } = usePublicProducts({ limit: 100 });
   const items = (data?.data ?? []).filter((p: any) => {
-    const catObj = p.categories || p.category;
-    const catName = (typeof catObj === 'object' ? catObj?.name : catObj) || '';
-    const catSlug = (typeof catObj === 'object' ? catObj?.slug : p.category_slug) || '';
-    const searchStr = (catName + ' ' + catSlug).toLowerCase();
-    return searchStr.includes("cake") || searchStr.includes("dessert");
+    const catSlug = (typeof p.categories === "object" ? p.categories?.slug : p.category_slug) || "";
+    return catSlug === "cakes";
   });
   return (
     <>
       <section className="relative bg-cocoa overflow-hidden">
-        <img src={cake} alt="" className="absolute inset-0 size-full object-cover opacity-30" width={1024} height={1280} />
+        <img
+          src={cake}
+          alt=""
+          className="absolute inset-0 size-full object-cover opacity-30"
+          width={1024}
+          height={1280}
+        />
         <div className="absolute inset-0 bg-gradient-to-r from-cocoa via-cocoa/80 to-cocoa/40" />
         <div className="container-luxe relative py-24 md:py-32 max-w-3xl">
           <p className="eyebrow">Made for the Moment</p>
@@ -41,7 +44,8 @@ function CakesPage() {
             Cakes worth <span className="italic text-gold">cutting into.</span>
           </h1>
           <p className="mt-6 text-ivory-muted text-base md:text-lg max-w-xl leading-relaxed">
-            100% eggless celebration cakes, made with couverture chocolate and finished simply, no fondant, no over-the-top decor. Just good cake, done well
+            100% eggless celebration cakes, made with couverture chocolate and finished simply, no
+            fondant, no over-the-top decor. Just good cake, done well
           </p>
         </div>
       </section>
@@ -50,10 +54,14 @@ function CakesPage() {
       <section className="bg-cream py-10">
         <div className="container-luxe max-w-3xl text-center">
           <p className="font-display text-lg md:text-2xl text-ink leading-relaxed">
-            "Our cakes are made with real ingredients — homemade fruit compotes, couverture chocolate and fresh seasonal produce. Every cake is designed to let the ingredients shine."
+            "Our cakes are made with real ingredients — homemade fruit compotes, couverture
+            chocolate and fresh seasonal produce. Every cake is designed to let the ingredients
+            shine."
           </p>
           <a
-            href={generateWhatsAppLink("Hi! I'd like to inquire about a custom celebration cake from Mezcla. Could you share more details?")}
+            href={generateWhatsAppLink(
+              "Hi! I'd like to inquire about a custom celebration cake from Mezcla. Could you share more details?",
+            )}
             target="_blank"
             rel="noreferrer"
             className="mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gold text-gold-foreground text-sm font-semibold hover:opacity-90 transition"
@@ -68,18 +76,27 @@ function CakesPage() {
           {isLoading ? (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {Array.from({ length: 3 }).map((_, i) => (
-                <div key={i} className="rounded-2xl bg-white border border-border shadow-soft animate-pulse h-80" />
+                <div
+                  key={i}
+                  className="rounded-2xl bg-white border border-border shadow-soft animate-pulse h-80"
+                />
               ))}
             </div>
           ) : items.length > 0 ? (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {items.map((p) => <ProductCard key={p.id} product={p} />)}
+              {items.map((p) => (
+                <ProductCard key={p.id} product={p} />
+              ))}
             </div>
           ) : (
             <div className="text-center py-12">
-              <p className="text-ink-muted">Share your vision with us and we'll bring it to life.</p>
+              <p className="text-ink-muted">
+                Share your vision with us and we'll bring it to life.
+              </p>
               <a
-                href={generateWhatsAppLink("Hi! I'd like to order a custom celebration cake from Mezcla.")}
+                href={generateWhatsAppLink(
+                  "Hi! I'd like to order a custom celebration cake from Mezcla.",
+                )}
                 target="_blank"
                 rel="noreferrer"
                 className="mt-4 inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-cocoa text-cream text-sm font-medium hover:opacity-90 transition"

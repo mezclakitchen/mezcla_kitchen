@@ -1,9 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { TopHeader } from "@/components/admin/TopHeader";
 import { PageHeader, SectionCard } from "@/components/admin/ui";
-import { Images, Upload, Trash2, Loader2, ImageIcon, Filter, X } from "lucide-react";
+import { Images, Upload, Trash2, Loader2, ImageIcon, Filter, X, RotateCw } from "lucide-react";
 import { useState, useRef, useCallback } from "react";
-import { useGallery, useUploadGalleryImage, useDeleteGalleryImage } from "@/hooks/useApi";
+import {
+  useGallery,
+  useUploadGalleryImage,
+  useDeleteGalleryImage,
+  useRotateGalleryImage,
+} from "@/hooks/useApi";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/admin/gallery")({
@@ -33,6 +38,7 @@ function GalleryPage() {
   const { data, isLoading } = useGallery(categoryFilter || undefined);
   const uploadImage = useUploadGalleryImage();
   const deleteImage = useDeleteGalleryImage();
+  const rotateImageMutation = useRotateGalleryImage();
 
   const images = data?.data ?? [];
 
@@ -56,6 +62,33 @@ function GalleryPage() {
     setDragging(false);
     if (e.dataTransfer.files.length > 0) handleFiles(e.dataTransfer.files);
   }, []);
+
+  const rotateImage = (index: number) => {
+    const item = pending[index];
+    const img = new Image();
+    img.src = item.preview;
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+      canvas.width = img.height;
+      canvas.height = img.width;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return;
+      ctx.translate(canvas.width / 2, canvas.height / 2);
+      ctx.rotate((90 * Math.PI) / 180);
+      ctx.drawImage(img, -img.width / 2, -img.height / 2);
+
+      canvas.toBlob((blob) => {
+        if (!blob) return;
+        const newFile = new File([blob], item.file.name, { type: item.file.type });
+        const newPreview = canvas.toDataURL(item.file.type);
+        setPending((prev) => {
+          const next = [...prev];
+          next[index] = { file: newFile, preview: newPreview };
+          return next;
+        });
+      }, item.file.type);
+    };
+  };
 
   async function handleUploadAll() {
     if (pending.length === 0) {
@@ -88,7 +121,10 @@ function GalleryPage() {
           <SectionCard title="Upload Images">
             {/* Drag-and-drop zone */}
             <div
-              onDragOver={(e) => { e.preventDefault(); setDragging(true); }}
+              onDragOver={(e) => {
+                e.preventDefault();
+                setDragging(true);
+              }}
               onDragLeave={() => setDragging(false)}
               onDrop={onDrop}
               onClick={() => fileInputRef.current?.click()}
@@ -98,17 +134,23 @@ function GalleryPage() {
                   : "border-border hover:border-border-strong hover:bg-accent"
               }`}
             >
-              <Upload className={`h-8 w-8 mx-auto mb-2 ${dragging ? "text-gold" : "text-muted-foreground"}`} />
+              <Upload
+                className={`h-8 w-8 mx-auto mb-2 ${dragging ? "text-gold" : "text-muted-foreground"}`}
+              />
               <div className="text-sm font-medium">Drag & drop images here</div>
               <div className="text-xs text-muted-foreground mt-1">or click to browse files</div>
-              <div className="text-xs text-muted-foreground mt-0.5">PNG, JPG, WebP · Max 5MB · Auto-converted to WebP</div>
+              <div className="text-xs text-muted-foreground mt-0.5">
+                PNG, JPG, WebP · Max 5MB · Auto-converted to WebP
+              </div>
               <input
                 ref={fileInputRef}
                 type="file"
                 accept="image/*"
                 multiple
                 className="hidden"
-                onChange={(e) => { if (e.target.files) handleFiles(e.target.files); }}
+                onChange={(e) => {
+                  if (e.target.files) handleFiles(e.target.files);
+                }}
               />
             </div>
 
@@ -120,14 +162,33 @@ function GalleryPage() {
                 </div>
                 <div className="grid grid-cols-3 gap-2">
                   {pending.map(({ preview }, i) => (
-                    <div key={i} className="relative aspect-square rounded-lg overflow-hidden border border-border group">
+                    <div
+                      key={i}
+                      className="relative aspect-square rounded-lg overflow-hidden border border-border group"
+                    >
                       <img src={preview} alt="" className="w-full h-full object-cover" />
-                      <button
-                        onClick={(e) => { e.stopPropagation(); setPending((p) => p.filter((_, j) => j !== i)); }}
-                        className="absolute top-1 right-1 h-5 w-5 rounded-full bg-destructive grid place-items-center opacity-0 group-hover:opacity-100 transition"
-                      >
-                        <X className="h-3 w-3 text-white" />
-                      </button>
+                      <div className="absolute top-1 right-1 flex gap-1 opacity-0 group-hover:opacity-100 transition">
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            rotateImage(i);
+                          }}
+                          className="h-6 w-6 rounded-md bg-black/60 grid place-items-center hover:bg-black/80"
+                          title="Rotate 90°"
+                        >
+                          <RotateCw className="h-3 w-3 text-white" />
+                        </button>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setPending((p) => p.filter((_, j) => j !== i));
+                          }}
+                          className="h-6 w-6 rounded-md bg-destructive grid place-items-center hover:bg-destructive/90"
+                          title="Remove"
+                        >
+                          <X className="h-3 w-3 text-white" />
+                        </button>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -137,7 +198,9 @@ function GalleryPage() {
             {/* Upload metadata */}
             <div className="mt-4 space-y-3">
               <div>
-                <label className="text-xs uppercase tracking-wider text-muted-foreground mb-1.5 block">Caption</label>
+                <label className="text-xs uppercase tracking-wider text-muted-foreground mb-1.5 block">
+                  Caption
+                </label>
                 <input
                   value={uploadCaption}
                   onChange={(e) => setUploadCaption(e.target.value)}
@@ -146,14 +209,18 @@ function GalleryPage() {
                 />
               </div>
               <div>
-                <label className="text-xs uppercase tracking-wider text-muted-foreground mb-1.5 block">Category</label>
+                <label className="text-xs uppercase tracking-wider text-muted-foreground mb-1.5 block">
+                  Category
+                </label>
                 <select
                   value={uploadCategory}
                   onChange={(e) => setUploadCategory(e.target.value)}
                   className="w-full h-9 px-3 rounded-md border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-ring/30"
                 >
                   {CATEGORIES.filter((c) => c.value).map((c) => (
-                    <option key={c.value} value={c.value}>{c.label}</option>
+                    <option key={c.value} value={c.value}>
+                      {c.label}
+                    </option>
                   ))}
                 </select>
               </div>
@@ -164,9 +231,14 @@ function GalleryPage() {
                 className="w-full h-10 rounded-lg bg-gold text-gold-foreground text-sm font-semibold hover:opacity-90 disabled:opacity-60 flex items-center justify-center gap-2"
               >
                 {uploadImage.isPending ? (
-                  <><Loader2 className="h-4 w-4 animate-spin" /> Uploading…</>
+                  <>
+                    <Loader2 className="h-4 w-4 animate-spin" /> Uploading…
+                  </>
                 ) : (
-                  <><Upload className="h-4 w-4" /> Upload {pending.length > 0 ? pending.length : ""} {pending.length === 1 ? "Image" : "Images"}</>
+                  <>
+                    <Upload className="h-4 w-4" /> Upload {pending.length > 0 ? pending.length : ""}{" "}
+                    {pending.length === 1 ? "Image" : "Images"}
+                  </>
                 )}
               </button>
             </div>
@@ -203,7 +275,9 @@ function GalleryPage() {
                 <div className="py-16 text-center">
                   <ImageIcon className="h-10 w-10 mx-auto text-muted-foreground mb-3" />
                   <p className="text-sm text-muted-foreground">
-                    {categoryFilter ? "No images in this category" : "No images yet — upload some above"}
+                    {categoryFilter
+                      ? "No images in this category"
+                      : "No images yet — upload some above"}
                   </p>
                 </div>
               ) : (
@@ -222,22 +296,43 @@ function GalleryPage() {
                       {/* Hover overlay */}
                       <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-2 p-3">
                         {img.caption && (
-                          <span className="text-white text-xs text-center line-clamp-2">{img.caption}</span>
+                          <span className="text-white text-xs text-center line-clamp-2">
+                            {img.caption}
+                          </span>
                         )}
                         {img.category && (
                           <span className="text-[10px] uppercase tracking-wider text-white/70 bg-white/10 px-2 py-0.5 rounded-full">
                             {img.category}
                           </span>
                         )}
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            deleteImage.mutateAsync(img.id);
-                          }}
-                          className="mt-1 h-8 w-8 rounded-full bg-destructive grid place-items-center hover:opacity-90"
-                        >
-                          <Trash2 className="h-3.5 w-3.5 text-white" />
-                        </button>
+                        <div className="mt-2 flex items-center justify-center gap-2">
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              rotateImageMutation.mutateAsync(img.id);
+                            }}
+                            disabled={rotateImageMutation.isPending}
+                            className="h-8 w-8 rounded-full bg-black/60 grid place-items-center hover:bg-black/80 disabled:opacity-50"
+                            title="Rotate 90°"
+                          >
+                            {rotateImageMutation.isPending &&
+                            rotateImageMutation.variables === img.id ? (
+                              <Loader2 className="h-3.5 w-3.5 text-white animate-spin" />
+                            ) : (
+                              <RotateCw className="h-3.5 w-3.5 text-white" />
+                            )}
+                          </button>
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              deleteImage.mutateAsync(img.id);
+                            }}
+                            className="h-8 w-8 rounded-full bg-destructive grid place-items-center hover:opacity-90"
+                            title="Delete"
+                          >
+                            <Trash2 className="h-3.5 w-3.5 text-white" />
+                          </button>
+                        </div>
                       </div>
                     </div>
                   ))}

@@ -5,11 +5,11 @@ export const site = {
   name: "Mezcla",
   tagline: "The Artisanal Kitchen",
   // E.164 (without '+') for wa.me. Replace with the real number.
-  phone: "9892290606",
+  phone: "+91 9892290606",
   email: "mezclakitchen@gmail.com",
   instagram: "https://instagram.com/mezclakitchen.in",
   facebook: "https://facebook.com/mezclakitchen.in",
-  linkedin: "https://linkedin.com/company/mezclakitchen",
+  linkedin: "https://www.linkedin.com/company/mezcla-the-artisanal-kitchen/?originalSubdomain=in",
   city: "Bangalore",
   serviceAreas: "Bangalore and select surrounding areas",
   address: "1st floor, 153A, 10th Main Rd, Vikram Nagar, Kumaraswamy Layout, Bengaluru, Karnataka 560078",
@@ -25,7 +25,8 @@ const BRAND_LINE = "— Team Mezcla";
 export function generateWhatsAppLink(message: string) {
   // Trim and encode safely. Keep newlines for readable messages.
   const text = encodeURIComponent(message.trim().slice(0, 1500));
-  return `https://wa.me/${site.phone}?text=${text}`;
+  const cleanPhone = site.phone.replace(/\D/g, "");
+  return `https://wa.me/${cleanPhone}?text=${text}`;
 }
 
 export const waMessages = {

@@ -8,7 +8,7 @@ export const Route = createFileRoute("/llms.txt")({
         const SITE_URL = import.meta.env.VITE_SITE_URL || 'https://mezclakitchen.in';
         
         const llmsTxt = `# Mezcla — The Artisanal Kitchen
-> A premium home kitchen in Bangalore specializing in sourdough breads, fresh mezze, snack boxes, gourmet hampers, and grazing tables. Handmade in small batches with honest ingredients.
+> A premium commercial cloud kitchen in Bangalore specializing in sourdough breads, fresh mezze, snack boxes, gourmet hampers, and grazing tables. Handmade in small batches with honest ingredients.
 
 ## Main sections
 - \`Menu & Products -> ${SITE_URL}/products\`: Browse our full selection of sourdough, specialty breads, cakes, and dips.

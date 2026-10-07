@@ -399,6 +399,18 @@ export function useDeleteGalleryImage() {
   });
 }
 
+export function useRotateGalleryImage() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (id: string) => galleryApi.rotate(id),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["gallery"] });
+      toast.success("Image rotated successfully");
+    },
+    onError: (e: any) => toast.error(e.message ?? "Failed to rotate image"),
+  });
+}
+
 // ─── Testimonials ─────────────────────────────────────────────
 export function useTestimonials() {
   return useQuery({

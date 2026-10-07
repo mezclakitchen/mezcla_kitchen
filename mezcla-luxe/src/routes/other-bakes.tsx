@@ -7,7 +7,11 @@ export const Route = createFileRoute("/other-bakes")({
   head: () => ({
     meta: [
       { title: "Other Bakes & Desserts in Bangalore | Mezcla" },
-      { name: "description", content: "From Korean cream cheese buns and Berliners to quiches, brownies and seasonal desserts—crafted for everyday indulgence." },
+      {
+        name: "description",
+        content:
+          "From Korean cream cheese buns and Berliners to quiches, brownies and seasonal desserts—crafted for everyday indulgence.",
+      },
       { property: "og:image", content: bakes },
     ],
     links: [{ rel: "canonical", href: "https://mezclakitchen.in/other-bakes" }],
@@ -18,16 +22,19 @@ export const Route = createFileRoute("/other-bakes")({
 function OtherBakesPage() {
   const { data, isLoading } = usePublicProducts({ limit: 100 });
   const items = (data?.data ?? []).filter((p: any) => {
-    const catObj = p.categories || p.category;
-    const catName = (typeof catObj === 'object' ? catObj?.name : catObj) || '';
-    const catSlug = (typeof catObj === 'object' ? catObj?.slug : p.category_slug) || '';
-    const searchStr = (catName + ' ' + catSlug).toLowerCase();
-    return searchStr.includes("bake") || searchStr.includes("dessert");
+    const catSlug = (typeof p.categories === "object" ? p.categories?.slug : p.category_slug) || "";
+    return catSlug === "other-bakes";
   });
   return (
     <>
       <section className="relative bg-cocoa overflow-hidden">
-        <img src={bakes} alt="" className="absolute inset-0 size-full object-cover opacity-40" width={1024} height={1280} />
+        <img
+          src={bakes}
+          alt=""
+          className="absolute inset-0 size-full object-cover opacity-40"
+          width={1024}
+          height={1280}
+        />
         <div className="absolute inset-0 bg-gradient-to-r from-cocoa via-cocoa/80 to-cocoa/40" />
         <div className="container-luxe relative py-24 md:py-32 max-w-3xl">
           <p className="eyebrow">Fresh from the oven</p>
@@ -35,7 +42,8 @@ function OtherBakesPage() {
             Other Bakes & <span className="italic text-gold">Desserts</span>.
           </h1>
           <p className="mt-6 text-ivory-muted text-base md:text-lg max-w-xl leading-relaxed">
-            From Korean cream cheese buns and Berliners to quiches, brownies and seasonal desserts—crafted for everyday indulgence.
+            From Korean cream cheese buns and Berliners to quiches, brownies and seasonal
+            desserts—crafted for everyday indulgence.
           </p>
         </div>
       </section>
@@ -44,12 +52,17 @@ function OtherBakesPage() {
           {isLoading ? (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {Array.from({ length: 6 }).map((_, i) => (
-                <div key={i} className="rounded-2xl bg-white border border-border shadow-soft animate-pulse h-80" />
+                <div
+                  key={i}
+                  className="rounded-2xl bg-white border border-border shadow-soft animate-pulse h-80"
+                />
               ))}
             </div>
           ) : items.length > 0 ? (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {items.map((p) => <ProductCard key={p.id} product={p} />)}
+              {items.map((p) => (
+                <ProductCard key={p.id} product={p} />
+              ))}
             </div>
           ) : (
             <p className="text-center text-ink-muted py-12">More bakes coming soon!</p>
