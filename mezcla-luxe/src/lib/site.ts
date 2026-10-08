@@ -6,7 +6,7 @@ export const site = {
   tagline: "The Artisanal Kitchen",
   // E.164 (without '+') for wa.me. Replace with the real number.
   phone: "+91 9892290606",
-  email: "mezclakitchen@gmail.com",
+  email: "hello@mezclakitchen.in",
   instagram: "https://instagram.com/mezclakitchen.in",
   facebook: "https://facebook.com/mezclakitchen.in",
   linkedin: "https://www.linkedin.com/company/mezcla-the-artisanal-kitchen/?originalSubdomain=in",
