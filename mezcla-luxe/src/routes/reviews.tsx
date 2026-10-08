@@ -51,10 +51,9 @@ function ReviewsPage() {
           />
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Show Google Reviews first if they exist */}
-            {googleReviews.map((t: any, i: number) => (
+            {dbTestimonials.map((t: any, i: number) => (
               <article
-                key={`g-${i}`}
+                key={`db-${i}`}
                 className="rounded-2xl bg-white border border-border p-8 shadow-soft"
               >
                 <div className="flex gap-0.5 text-gold">
@@ -62,41 +61,11 @@ function ReviewsPage() {
                     <Star key={n} className="size-4 fill-current" />
                   ))}
                 </div>
-                <p className="mt-5 text-ink leading-relaxed">"{t.text?.text || t.text}"</p>
-                <div className="mt-6 flex items-center gap-3">
-                  {t.authorAttribution?.photoUri && (
-                    <img
-                      src={t.authorAttribution.photoUri}
-                      alt={t.authorAttribution.displayName}
-                      className="w-10 h-10 rounded-full"
-                    />
-                  )}
-                  <div>
-                    <p className="font-medium">
-                      {t.authorAttribution?.displayName || "Google Reviewer"}
-                    </p>
-                    <p className="text-xs text-ink-muted">{t.relativePublishTimeDescription}</p>
-                  </div>
-                </div>
-              </article>
-            ))}
-
-            {/* Then show DB Testimonials */}
-            {dbTestimonials.map((t: any, i: number) => (
-              <article
-                key={`db-${i}`}
-                className="rounded-2xl bg-white border border-border p-8 shadow-soft"
-              >
-                <div className="flex gap-0.5 text-gold">
-                  {[...Array(5)].map((_, n) => (
-                    <Star key={n} className="size-4 fill-current" />
-                  ))}
-                </div>
-                <p className="mt-5 text-ink leading-relaxed">"{t.content}"</p>
+                <p className="mt-5 text-ink leading-relaxed">"{t.text || t.content}"</p>
                 <div className="mt-6">
-                  <p className="font-medium">{t.customer_name}</p>
+                  <p className="font-medium">{t.name || t.customer_name}</p>
                   <p className="text-xs text-ink-muted">
-                    {t.event_type ? `${t.event_type}` : "Customer"}
+                    {t.location || t.event_type || "Customer"}
                   </p>
                 </div>
               </article>

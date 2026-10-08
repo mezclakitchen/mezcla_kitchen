@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { TopHeader } from "@/components/admin/TopHeader";
 import { PageHeader, SectionCard, StatusPill } from "@/components/admin/ui";
-import { Star, Plus, Pencil, Trash2, Loader2, X, ToggleLeft, ToggleRight } from "lucide-react";
+import { Star, Plus, Pencil, Trash2, Loader2, X, ToggleLeft, ToggleRight, Download, Check } from "lucide-react";
 import { useState } from "react";
 import {
-  useTestimonials, useCreateTestimonial, useUpdateTestimonial, useDeleteTestimonial,
+  useTestimonials, useCreateTestimonial, useUpdateTestimonial, useDeleteTestimonial, useGoogleReviews
 } from "@/hooks/useApi";
 
 export const Route = createFileRoute("/admin/reviews")({
@@ -135,11 +135,96 @@ function ReviewModal({
   );
 }
 
+function GoogleReviewModal({ onClose, existingReviews }: { onClose: () => void, existingReviews: any[] }) {
+  const { data, isLoading } = useGoogleReviews();
+  const create = useCreateTestimonial();
+  const [importedIds, setImportedIds] = useState<Set<string>>(new Set());
+
+  const reviews = data?.data?.reviews || [];
+
+  async function handleImport(r: any) {
+    const text = r.text?.text || r.text;
+    const name = r.authorAttribution?.displayName || "Google Reviewer";
+    const id = r.name; // Google Place review resource name serves as unique ID
+
+    if (importedIds.has(id)) return;
+
+    await create.mutateAsync({
+      name,
+      location: "Google Review",
+      rating: r.rating || 5,
+      text,
+      is_active: true
+    });
+    setImportedIds((prev) => new Set(prev).add(id));
+  }
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+      <div className="w-full max-w-3xl max-h-[85vh] flex flex-col rounded-2xl bg-surface border border-border shadow-2xl">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-border shrink-0">
+          <div>
+            <h2 className="font-display text-lg">Fetch Google Reviews</h2>
+            <p className="text-xs text-muted-foreground mt-1">Showing 5 most recent reviews from Google</p>
+          </div>
+          <button onClick={onClose} className="h-8 w-8 grid place-items-center rounded-md hover:bg-accent">
+            <X className="h-4 w-4" />
+          </button>
+        </div>
+        
+        <div className="p-6 overflow-y-auto space-y-4">
+          {isLoading ? (
+            <div className="py-12 flex justify-center"><Loader2 className="h-8 w-8 animate-spin text-gold" /></div>
+          ) : reviews.length === 0 ? (
+            <div className="py-12 text-center text-muted-foreground">No Google reviews found.</div>
+          ) : (
+            reviews.map((r: any, idx: number) => {
+              const text = r.text?.text || r.text;
+              const name = r.authorAttribution?.displayName || "Google Reviewer";
+              const date = r.relativePublishTimeDescription;
+              
+              const alreadyInDb = existingReviews.some((dbR) => dbR.text === text && dbR.name === name);
+              const isImported = importedIds.has(r.name) || alreadyInDb;
+              
+              return (
+                <div key={idx} className="p-4 rounded-xl border border-border bg-background flex gap-4">
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="font-medium text-sm">{name}</div>
+                      <StarRating rating={r.rating || 5} />
+                      <div className="text-xs text-muted-foreground">{date}</div>
+                    </div>
+                    <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">{text}</p>
+                  </div>
+                  <div className="shrink-0 flex items-center">
+                    <button
+                      onClick={() => handleImport(r)}
+                      disabled={isImported || create.isPending}
+                      className="h-9 px-4 rounded-md text-sm font-medium border border-border flex items-center gap-2 hover:bg-accent disabled:opacity-50 disabled:hover:bg-transparent"
+                    >
+                      {isImported ? (
+                        <><Check className="h-4 w-4 text-success" /> Imported</>
+                      ) : (
+                        <><Download className="h-4 w-4" /> Import</>
+                      )}
+                    </button>
+                  </div>
+                </div>
+              );
+            })
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function ReviewsPage() {
   const { data, isLoading } = useTestimonials();
   const update = useUpdateTestimonial();
   const remove = useDeleteTestimonial();
   const [modal, setModal] = useState<"add" | "edit" | null>(null);
+  const [showGoogle, setShowGoogle] = useState(false);
   const [editReview, setEditReview] = useState<any>(null);
 
   const reviews = data?.data ?? [];
@@ -156,13 +241,21 @@ function ReviewsPage() {
           title="Customer Reviews"
           subtitle="Manage testimonials shown on your website."
           actions={
-            <button
-              id="add-review-btn"
-              onClick={() => { setEditReview(null); setModal("add"); }}
-              className="inline-flex items-center gap-2 h-9 px-3 rounded-md bg-gold text-gold-foreground text-sm font-medium hover:opacity-90"
-            >
-              <Plus className="h-4 w-4" /> Add Review
-            </button>
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => setShowGoogle(true)}
+                className="inline-flex items-center gap-2 h-9 px-3 rounded-md bg-accent text-foreground text-sm font-medium hover:bg-accent/80 border border-border"
+              >
+                <Download className="h-4 w-4" /> Fetch from Google
+              </button>
+              <button
+                id="add-review-btn"
+                onClick={() => { setEditReview(null); setModal("add"); }}
+                className="inline-flex items-center gap-2 h-9 px-3 rounded-md bg-gold text-gold-foreground text-sm font-medium hover:opacity-90"
+              >
+                <Plus className="h-4 w-4" /> Add Review
+              </button>
+            </div>
           }
         />
 
@@ -262,6 +355,8 @@ function ReviewsPage() {
           onClose={() => { setModal(null); setEditReview(null); }}
         />
       )}
+
+      {showGoogle && <GoogleReviewModal onClose={() => setShowGoogle(false)} existingReviews={reviews} />}
     </>
   );
 }

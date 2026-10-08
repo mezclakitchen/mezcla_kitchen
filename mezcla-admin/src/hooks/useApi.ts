@@ -431,6 +431,14 @@ export function useCreateTestimonial() {
   });
 }
 
+export function useGoogleReviews() {
+  return useQuery({
+    queryKey: ["googleReviews"],
+    queryFn: () => testimonialsApi.google(),
+    staleTime: 5 * 60 * 1000,
+  });
+}
+
 export function useUpdateTestimonial() {
   const qc = useQueryClient();
   return useMutation({

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { SectionHeader } from "@/components/ui-custom/SectionHeader";
-import { Quote, ChevronLeft, ChevronRight } from "lucide-react";
-import { usePublicTestimonials } from "@/hooks/usePublicApi";
+import { Quote, ChevronLeft, ChevronRight, Star } from "lucide-react";
+import { usePublicTestimonials, usePublicGoogleReviews } from "@/hooks/usePublicApi";
 
 const FALLBACK = [
   { name: "Priya Sharma", location: "Indiranagar, Bangalore", text: "Absolutely love Mezcla! The sourdough is out of this world — crispy crust, perfectly chewy inside. I order every week and they never disappoint." },
@@ -11,8 +11,28 @@ const FALLBACK = [
 
 export function Testimonials() {
   const [i, setI] = useState(0);
-  const { data, isLoading } = usePublicTestimonials();
-  const all: any[] = data?.data?.length ? data.data : FALLBACK;
+  const { data: dbData, isLoading: dbLoading } = usePublicTestimonials();
+  const { data: googleData, isLoading: googleLoading } = usePublicGoogleReviews();
+
+  const isLoading = dbLoading || googleLoading;
+
+  const formattedGoogle = (googleData?.data?.reviews || []).map((r: any) => ({
+    name: r.authorAttribution?.displayName || "Google Reviewer",
+    location: r.relativePublishTimeDescription || "Google Review",
+    text: r.text?.text || r.text,
+    rating: r.rating || 5
+  }));
+
+  const formattedDb = (dbData?.data || []).map((r: any) => ({
+    name: r.name,
+    location: r.location || "Customer",
+    text: r.text,
+    rating: r.rating || 5
+  }));
+
+  const combined = formattedDb.slice(0, 5);
+  const all: any[] = combined.length ? combined : FALLBACK;
+  
   const t = all[i] ?? all[0];
   const total = all.length;
 
@@ -43,11 +63,20 @@ export function Testimonials() {
     <section className="bg-espresso py-24 md:py-32">
       <div className="container-luxe">
         <SectionHeader eyebrow="Kind Words" title="What Our Customers Say" dark align="center" />
-        <div className="max-w-3xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto text-center px-4">
           <Quote className="size-10 text-gold mx-auto" />
-          <p className="mt-8 font-display text-2xl md:text-3xl leading-snug text-cream italic">
-            "{t.text}"
-          </p>
+          
+          <div className="flex justify-center gap-1 text-gold mt-6 mb-2">
+            {[...Array(t.rating || 5)].map((_, n) => (
+              <Star key={n} className="size-5 fill-current" />
+            ))}
+          </div>
+
+          <div className="min-h-[12rem] flex items-center justify-center">
+            <p className="mt-6 font-display text-xl md:text-3xl leading-relaxed md:leading-snug text-cream italic">
+              "{t.text}"
+            </p>
+          </div>
           <div className="mt-8">
             <p className="text-cream">{t.name}</p>
             <p className="eyebrow !text-ivory-muted mt-1">{t.location}</p>

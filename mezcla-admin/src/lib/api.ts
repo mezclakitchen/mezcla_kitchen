@@ -186,6 +186,7 @@ export const galleryApi = {
 // ─── Testimonials ─────────────────────────────────────────────
 export const testimonialsApi = {
   list: () => request<any>("/api/admin/testimonials"),
+  google: () => request<any>("/api/testimonials/google"),
   create: (body: any) =>
     request<any>("/api/admin/testimonials", { method: "POST", body: JSON.stringify(body) }),
   update: (id: string, body: any) =>

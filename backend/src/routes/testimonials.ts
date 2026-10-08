@@ -32,9 +32,12 @@ router.get('/google', async (_req, res) => {
       return;
     }
 
-    // Use the Legacy Places API as it is more reliable for returning reviews for SABs
-    const response = await fetch(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=reviews,rating,user_ratings_total&key=${apiKey}`, {
-      method: 'GET'
+    // Use the New Places API
+    const response = await fetch(`https://places.googleapis.com/v1/places/${placeId}?fields=reviews,rating,userRatingCount`, {
+      method: 'GET',
+      headers: {
+        'X-Goog-Api-Key': apiKey
+      }
     });
 
     if (!response.ok) {
@@ -43,17 +46,17 @@ router.get('/google', async (_req, res) => {
 
     const data = await response.json() as any;
 
-    if (data.status === 'REQUEST_DENIED') {
-      console.error('Google API Error:', data.error_message);
+    if (data.error) {
+      console.error('Google API Error:', data.error.message);
       res.status(403).json({ error: 'API Key is restricted or Places API is not enabled.' });
       return;
     }
     
-    if (data && data.result) {
+    if (data) {
       cachedGoogleReviews = {
-        reviews: data.result.reviews || [],
-        rating: data.result.rating || 0,
-        userRatingCount: data.result.user_ratings_total || 0
+        reviews: data.reviews || [],
+        rating: data.rating || 0,
+        userRatingCount: data.userRatingCount || 0
       };
       lastGoogleFetch = Date.now();
       res.json({ data: cachedGoogleReviews });
